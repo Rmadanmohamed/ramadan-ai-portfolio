@@ -1,0 +1,23 @@
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1200" fill="#050816"/>
+  <path d="M0 1200L1200 0V1200H0Z" fill="url(#paint0_linear)"/>
+  <circle cx="600" cy="454" r="178" fill="#0F172A" stroke="#22D3EE" stroke-width="8"/>
+  <path d="M350 930C386 790 486 704 600 704C714 704 814 790 850 930" fill="#0F172A" stroke="#A855F7" stroke-width="8" stroke-linecap="round"/>
+  <text x="600" y="505" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="150" font-weight="800" fill="white">RM</text>
+  <text x="600" y="1010" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="42" font-weight="700" fill="#E0F2FE">Ramadan Mohamed Hassan</text>
+  <text x="600" y="1068" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="500" fill="#7DD3FC">AI Engineer Portfolio</text>
+  <g opacity="0.65">
+    <circle cx="226" cy="232" r="7" fill="#22D3EE"/>
+    <circle cx="960" cy="286" r="7" fill="#A855F7"/>
+    <circle cx="928" cy="844" r="7" fill="#22D3EE"/>
+    <circle cx="260" cy="786" r="7" fill="#A855F7"/>
+    <path d="M226 232L600 454L960 286M260 786L600 454L928 844" stroke="#38BDF8" stroke-width="3"/>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear" x1="118.5" y1="1024" x2="1108" y2="97" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9" stop-opacity="0.38"/>
+      <stop offset="0.48" stop-color="#7C3AED" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+</svg>
