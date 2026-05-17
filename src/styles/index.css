@@ -767,6 +767,7 @@ html[data-theme="light"] .mobile-nav {
 
 .experience-rail {
   position: relative;
+  grid-row: 1 / -1;
   display: grid;
   justify-items: center;
   color: var(--cyan);
@@ -790,6 +791,7 @@ html[data-theme="light"] .mobile-nav {
 
 .experience-card {
   position: relative;
+  grid-column: 2;
   padding: 24px;
   margin-bottom: 16px;
 }
