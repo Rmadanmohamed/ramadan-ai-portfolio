@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Activity, CheckCircle2, Cpu, X } from 'lucide-react';
+import { Activity, ArrowUpRight, CheckCircle2, Cpu, ExternalLink, GitBranch, Layers3, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '../data/portfolioData';
 
@@ -50,39 +50,103 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               <X size={18} />
             </button>
 
-            <div className="project-modal-visual">
-              <div className="project-glyph">
-                <Cpu size={42} />
-              </div>
-            </div>
-
-            <div className="project-modal-body">
-              <span className="section-eyebrow">{project.category}</span>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-
-              {project.metrics?.length ? (
-                <div className="metric-grid">
-                  {project.metrics.map((metric) => (
-                    <div key={metric}>
-                      <Activity size={16} />
-                      <span>{metric}</span>
-                    </div>
-                  ))}
+              <div className="project-modal-visual">
+                <div className="project-glyph">
+                  <Cpu size={42} />
                 </div>
-              ) : null}
+                <div className="project-modal-meta">
+                  <span>{project.level}</span>
+                  <span>{project.repo ?? 'Repository not found'}</span>
+                </div>
+              </div>
 
-              {project.achievements?.length ? (
+              <div className="project-modal-body">
+                <span className="section-eyebrow">{project.category}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+
+                <div className="modal-actions">
+                  {project.githubUrl ? (
+                    <a href={project.githubUrl} target="_blank" rel="noreferrer" className="modal-link modal-link--primary">
+                      <GitBranch size={17} />
+                      Open GitHub
+                      <ArrowUpRight size={15} />
+                    </a>
+                  ) : (
+                    <span className="modal-link modal-link--disabled" aria-disabled="true">
+                      <GitBranch size={17} />
+                      GitHub repository not listed
+                    </span>
+                  )}
+                  {project.liveDemoUrl ? (
+                    <a href={project.liveDemoUrl} target="_blank" rel="noreferrer" className="modal-link">
+                      <ExternalLink size={17} />
+                      Live Demo
+                    </a>
+                  ) : null}
+                </div>
+
                 <div className="modal-block">
-                  <strong>Impact</strong>
-                  {project.achievements.map((achievement) => (
-                    <p key={achievement}>
+                  <strong>Problem Solved</strong>
+                  <p>{project.problem}</p>
+                </div>
+
+                <div className="modal-block">
+                  <strong>Key Features</strong>
+                  {project.features.map((feature) => (
+                    <p key={feature}>
                       <CheckCircle2 size={16} />
-                      <span>{achievement}</span>
+                      <span>{feature}</span>
                     </p>
                   ))}
                 </div>
-              ) : null}
+
+                <div className="metric-grid">
+                  <div>
+                    <Activity size={16} />
+                    <span>{project.results[0]}</span>
+                  </div>
+                  <div>
+                    <Layers3 size={16} />
+                    <span>{project.dataset}</span>
+                  </div>
+                </div>
+
+                <div className="case-study-grid">
+                  <div className="modal-block">
+                    <strong>AI/ML Models</strong>
+                    {project.models.map((model) => (
+                      <p key={model}>
+                        <CheckCircle2 size={16} />
+                        <span>{model}</span>
+                      </p>
+                    ))}
+                  </div>
+
+                  <div className="modal-block">
+                    <strong>Results / Metrics</strong>
+                    {project.results.map((result) => (
+                      <p key={result}>
+                        <Activity size={16} />
+                        <span>{result}</span>
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="modal-block">
+                  <strong>Architecture / Workflow</strong>
+                  <p>{project.architecture}</p>
+                </div>
+
+                <div className="modal-block">
+                  <strong>Skills Demonstrated</strong>
+                  <div className="tag-row">
+                    {project.skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
+                    ))}
+                  </div>
+                </div>
 
               <div className="modal-block">
                 <strong>Technologies</strong>
@@ -92,6 +156,20 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   ))}
                 </div>
               </div>
+
+                <div className="modal-block">
+                  <strong>Screenshots / Demo</strong>
+                  <p>{project.liveDemoUrl ? 'Live demo link available.' : 'Placeholder only. Screenshots or hosted demo can be added later.'}</p>
+                </div>
+
+                {project.notes?.length ? (
+                  <div className="modal-block modal-note">
+                    <strong>Notes</strong>
+                    {project.notes.map((note) => (
+                      <p key={note}>{note}</p>
+                    ))}
+                  </div>
+                ) : null}
             </div>
           </motion.article>
         </motion.div>

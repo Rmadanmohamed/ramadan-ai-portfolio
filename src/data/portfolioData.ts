@@ -1,7 +1,5 @@
-export type ProjectCategory =
-  | 'Healthcare & Medical AI'
-  | 'Robotics, IoT & Blockchain'
-  | 'Advanced Algorithms & Software Engineering';
+import { projects } from './projects';
+export type { Project, ProjectCategory } from './projects';
 
 export type SkillGroup = {
   title: string;
@@ -12,15 +10,6 @@ export type SkillGroup = {
     level?: number;
     label?: string;
   }>;
-};
-
-export type Project = {
-  title: string;
-  category: ProjectCategory;
-  description: string;
-  technologies: string[];
-  metrics?: string[];
-  achievements?: string[];
 };
 
 export type Experience = {
@@ -64,7 +53,7 @@ export const portfolioData = {
     { label: 'Contact', href: '#contact' },
   ],
   stats: [
-    { label: 'Projects', value: '12', detail: 'AI, robotics, software' },
+    { label: 'Projects', value: '34', detail: 'GitHub and CV case studies' },
     { label: 'Top Model Accuracy', value: '99%', detail: 'TabNet nutrition system' },
     { label: 'Prize Funding', value: '30K EGP', detail: 'MansTech Hackathon' },
     { label: 'Publication', value: 'Springer', detail: 'ISBCOM 2025' },
@@ -153,116 +142,7 @@ export const portfolioData = {
       ],
     },
   ],
-  projects: [
-    {
-      title: 'Gastrointestinal Tract Anomaly Detection',
-      category: 'Healthcare & Medical AI',
-      description:
-        'Applied a Faster R-CNN Inception V2 model on the KVASIR dataset for gastrointestinal anomaly detection.',
-      technologies: ['Faster R-CNN', 'Inception V2', 'KVASIR', 'Computer Vision', 'Medical AI'],
-      metrics: ['89.2% average precision', '0.28s inference time'],
-      achievements: ['Built automated anomaly detection for endoscopic imaging workflows.'],
-    },
-    {
-      title: 'AI-Driven Nutritional Recommendation System',
-      category: 'Healthcare & Medical AI',
-      description:
-        'Built a TabNet-based framework analyzing 26 macronutrients to deliver personalized infant diets through a cloud-integrated mobile app.',
-      technologies: ['TabNet', 'Cloud Integration', 'Mobile App', 'Nutrition AI', 'Data Science'],
-      metrics: ['99% accuracy', '26 macronutrients analyzed'],
-      achievements: ['Connected predictive modeling with user-facing personalized healthcare guidance.'],
-    },
-    {
-      title: 'Diabetes Prediction Model',
-      category: 'Healthcare & Medical AI',
-      description:
-        'Engineered an XGBoost classifier with advanced preprocessing and medical feature engineering for diabetes prediction.',
-      technologies: ['XGBoost', 'Feature Engineering', 'Medical Data', 'Scikit-learn'],
-      metrics: ['98% accuracy'],
-      achievements: ['Focused on reliable predictive modeling for early medical risk detection.'],
-    },
-    {
-      title: 'Brain Tumor MRI Classification System',
-      category: 'Healthcare & Medical AI',
-      description:
-        'Created a CNN architecture for automated brain tumor classification from MRI scans.',
-      technologies: ['CNN', 'Deep Learning', 'MRI', 'TensorFlow', 'Medical Imaging'],
-      achievements: ['Built a medical image classification pipeline for tumor detection.'],
-    },
-    {
-      title: 'Breast Cancer Prediction System',
-      category: 'Healthcare & Medical AI',
-      description:
-        'Developed a predictive model with an interactive visualization dashboard to support early disease detection.',
-      technologies: ['Machine Learning', 'Dashboard', 'Data Visualization', 'Predictive Modeling'],
-      metrics: ['92% accuracy'],
-      achievements: ['Combined prediction and visual analytics for clearer clinical decision support.'],
-    },
-    {
-      title: 'AGRINOVA - AI-Robotics & IoT Framework with Blockchain',
-      category: 'Robotics, IoT & Blockchain',
-      description:
-        'Designed a UAV and IoT system using VGG16 transfer learning and blockchain smart contracts to secure agricultural data.',
-      technologies: ['UAV', 'IoT', 'VGG16', 'Transfer Learning', 'Blockchain', 'Smart Contracts'],
-      metrics: ['96.9% accuracy'],
-      achievements: [
-        'Won 2nd Place at MansTech Hackathon.',
-        'Won 1st Place at the Computer Science and Engineering Projects Exhibition 2026.',
-      ],
-    },
-    {
-      title: 'Novel Navigation Algorithm',
-      category: 'Robotics, IoT & Blockchain',
-      description:
-        'Formulated a robotic path-planning strategy integrating random walk, Dijkstra algorithm, and computer vision for obstacle avoidance.',
-      technologies: ['Dijkstra Algorithm', 'Random Walk', 'Computer Vision', 'Robotics'],
-      achievements: ['Advanced coverage path planning for robotic navigation.'],
-    },
-    {
-      title: 'Earthquake Early Warning System',
-      category: 'Robotics, IoT & Blockchain',
-      description:
-        'Built a real-time prediction model analyzing historical seismic data to trigger rapid community safety alerts.',
-      technologies: ['Machine Learning', 'Real-time Systems', 'Seismic Data', 'Alerting'],
-      achievements: ['Connected predictive modeling with emergency response workflows.'],
-    },
-    {
-      title: 'Hybrid Optimization Algorithm',
-      category: 'Advanced Algorithms & Software Engineering',
-      description:
-        'Developed a global search algorithm merging Hyena and Scalp Swarm-Based Optimization.',
-      technologies: ['Optimization Algorithms', 'Global Search', 'Algorithm Design'],
-      achievements: [
-        'Won 1st Place at the Annual University Projects Exhibition.',
-        'Outperformed 45 competing projects.',
-      ],
-    },
-    {
-      title: 'Exoplanet Detection Project',
-      category: 'Advanced Algorithms & Software Engineering',
-      description:
-        'Architected a deep learning pipeline to identify planetary transits in noisy astronomical datasets with an emphasis on reproducibility.',
-      technologies: ['Deep Learning', 'Astronomy Data', 'Scientific ML', 'Reproducibility'],
-      achievements: ['Applied AI to scientific discovery and noisy signal detection.'],
-    },
-    {
-      title: 'NLP Text Classification',
-      category: 'Advanced Algorithms & Software Engineering',
-      description:
-        'Implemented BERT architectures for sentiment analysis on benchmark text classification datasets.',
-      technologies: ['BERT', 'Transformers', 'NLP', 'Sentiment Analysis'],
-      metrics: ['94% accuracy'],
-      achievements: ['Built transformer-based language understanding for classification.'],
-    },
-    {
-      title: 'FinLit Egypt',
-      category: 'Advanced Algorithms & Software Engineering',
-      description:
-        'Developed a full-stack digital financial literacy platform with responsive design, secure authentication, and integrated payment gateways.',
-      technologies: ['Full Stack', 'Responsive Design', 'Authentication', 'Payments', 'JavaScript'],
-      achievements: ['Delivered a user-facing platform for financial literacy and access.'],
-    },
-  ] satisfies Project[],
+  projects,
   awards: [
     {
       title: '2nd Place - MansTech Hackathon',
@@ -500,10 +380,3 @@ export const portfolioData = {
     { name: 'English', level: 'Bilingual' },
   ],
 };
-
-export const projectCategories: Array<ProjectCategory | 'All'> = [
-  'All',
-  'Healthcare & Medical AI',
-  'Robotics, IoT & Blockchain',
-  'Advanced Algorithms & Software Engineering',
-];
