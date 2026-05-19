@@ -48,7 +48,7 @@ export const portfolioData = {
       'Passionate AI and Computer Science student focused on practical, scalable technologies that solve real-world problems. Huawei-certified AI Professional and published researcher with high-accuracy ML work across healthcare, smart agriculture, robotics, optimization, NLP, and computer vision.',
     email: 'rm3176602@gmail.com',
     phone: '01000319057',
-    linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-657686365',
+    linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-657686365/',
     github: '',
     cvUrl: '/assets/Ramadan_Mohamed_CV.docx',
     photoUrl: '/assets/my-photo.jpg',
