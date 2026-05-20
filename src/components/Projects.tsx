@@ -10,7 +10,6 @@ import {
   GitBranch,
   Leaf,
   Microscope,
-  Network,
   Search,
   SlidersHorizontal,
   Stethoscope,
@@ -23,25 +22,26 @@ import {
   projectSortOptions,
   type Project,
   type ProjectCategory,
+  type ProjectFilter,
   type ProjectSort,
 } from '../data/projects';
 import { SectionHeader } from './SectionHeader';
 import { ProjectModal } from './ProjectModal';
 
 const categoryIcons: Record<ProjectCategory, typeof Stethoscope> = {
-  'AI/ML': BrainCircuit,
+  'Machine Learning': BrainCircuit,
+  'Data Science': Atom,
   'Medical AI': Stethoscope,
   'Computer Vision': Microscope,
   'Smart Agriculture': Leaf,
-  'Robotics/IoT': Waypoints,
-  'NLP/LLMs': Network,
+  'Robotics & IoT': Waypoints,
   'Full Stack': BriefcaseBusiness,
   Optimization: Cpu,
   Research: FlaskConical,
 };
 
 export function Projects() {
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'All'>('All');
+  const [activeCategory, setActiveCategory] = useState<ProjectFilter>('All');
   const [query, setQuery] = useState('');
   const [sortMode, setSortMode] = useState<ProjectSort>('featured');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -50,7 +50,8 @@ export function Projects() {
     const normalizedQuery = query.trim().toLowerCase();
 
     const filtered = portfolioData.projects.filter((project) => {
-      const categoryMatches = activeCategory === 'All' || project.category === activeCategory;
+      const categoryMatches =
+        activeCategory === 'All' || (activeCategory === 'Featured' ? project.featured : project.category === activeCategory);
       const searchableText = [
         project.title,
         project.repo,
@@ -175,7 +176,7 @@ export function Projects() {
               <p>{project.summary}</p>
 
               <div className="project-metrics">
-                <strong>{project.aiHeavy ? 'AI-heavy' : project.webApp ? 'Web app' : 'Case study'}</strong>
+                <strong>{project.featured ? 'Featured' : project.aiHeavy ? 'AI-heavy' : project.webApp ? 'Web app' : 'Case study'}</strong>
                 <strong>{project.results[0] === 'Not specified' ? 'Metrics not specified' : 'Results noted'}</strong>
               </div>
 
@@ -186,23 +187,16 @@ export function Projects() {
               </div>
 
               <div className="project-actions">
-                {project.githubUrl ? (
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="project-action"
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <GitBranch size={16} />
-                    GitHub
-                  </a>
-                ) : (
-                  <span className="project-action project-action--disabled" aria-disabled="true">
-                    <GitBranch size={16} />
-                    GitHub not listed
-                  </span>
-                )}
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-action"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <GitBranch size={16} />
+                  GitHub
+                </a>
                 <button
                   type="button"
                   className="project-open"

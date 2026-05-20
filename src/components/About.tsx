@@ -14,8 +14,8 @@ export function About() {
     <section id="about" className="section-shell">
       <SectionHeader
         eyebrow="About Me"
-        title="An AI engineer building systems that move from research into useful products."
-        description="The CV story is direct: strong applied AI, published robotics research, competitive programming discipline, and award-winning work across agriculture, healthcare, and optimization."
+        title="Applied AI, research thinking, and product-minded engineering."
+        description="A concise view of the domains I work across and the kind of engineering roles I am preparing for."
       />
 
       <div className="about-grid">
@@ -27,17 +27,20 @@ export function About() {
           transition={{ duration: 0.6 }}
         >
           <p>
-            Ramadan Mohamed Hassan is a Computer Science student in the Artificial Intelligence
-            program at New Mansoura University, focused on practical AI systems that solve real
-            problems. His portfolio spans high-accuracy machine learning models for healthcare,
-            smart agriculture, robotics navigation, IoT systems, blockchain-backed data integrity,
-            and NLP applications.
+            I am an Artificial Intelligence and Computer Science student specializing in applied
+            machine learning, computer vision, medical AI, smart agriculture systems, robotics, and
+            full-stack AI applications.
           </p>
           <p>
-            His work combines the scientist and builder mindsets: published path-planning research,
-            production-ready AI internship experience at ReNile, generative AI and prompt
-            engineering training with NVIDIA, Huawei AI certifications, and competitive programming
-            qualifications through ICPC and ECPC.
+            My work focuses on building intelligent systems that connect research, model
+            development, software engineering, and real-world problem solving. I have developed
+            projects across healthcare AI, crop intelligence, robotic path planning, optimization
+            algorithms, graph neural networks, recommender systems, and interactive dashboards.
+          </p>
+          <p>
+            I am especially interested in AI Engineer, Machine Learning Engineer, Computer Vision
+            Engineer, Data Science, and Software Engineering roles where I can build reliable,
+            practical, and impactful AI-powered systems.
           </p>
           <div className="signal-list">
             <span>Production ML</span>

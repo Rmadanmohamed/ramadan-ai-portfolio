@@ -1248,6 +1248,32 @@ html[data-theme="light"] .project-sort select {
   margin: 8px 0;
 }
 
+.related-repos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.related-repos a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--soft);
+  font-weight: 850;
+  transition: 0.2s ease;
+}
+
+.related-repos a:hover {
+  border-color: var(--line-strong);
+  color: var(--cyan);
+  transform: translateY(-1px);
+}
+
 .modal-note {
   padding: 12px;
   border: 1px solid rgba(251, 113, 133, 0.22);

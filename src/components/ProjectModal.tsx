@@ -66,20 +66,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <p>{project.description}</p>
 
                 <div className="modal-actions">
-                  {project.githubUrl ? (
-                    <a href={project.githubUrl} target="_blank" rel="noreferrer" className="modal-link modal-link--primary">
-                      <GitBranch size={17} />
-                      Open GitHub
-                      <ArrowUpRight size={15} />
-                    </a>
-                  ) : (
-                    <span className="modal-link modal-link--disabled" aria-disabled="true">
-                      <GitBranch size={17} />
-                      GitHub repository not listed
-                    </span>
-                  )}
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="modal-link modal-link--primary">
+                    <GitBranch size={17} />
+                    Open GitHub
+                    <ArrowUpRight size={15} />
+                  </a>
                   {project.liveDemoUrl ? (
-                    <a href={project.liveDemoUrl} target="_blank" rel="noreferrer" className="modal-link">
+                    <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="modal-link">
                       <ExternalLink size={17} />
                       Live Demo
                     </a>
@@ -100,6 +93,18 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </p>
                   ))}
                 </div>
+
+                {project.achievements?.length ? (
+                  <div className="modal-block">
+                    <strong>Achievements</strong>
+                    {project.achievements.map((achievement) => (
+                      <p key={achievement}>
+                        <CheckCircle2 size={16} />
+                        <span>{achievement}</span>
+                      </p>
+                    ))}
+                  </div>
+                ) : null}
 
                 <div className="metric-grid">
                   <div>
@@ -148,14 +153,28 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                 </div>
 
-              <div className="modal-block">
-                <strong>Technologies</strong>
-                <div className="tag-row">
-                  {project.technologies.map((technology) => (
-                    <span key={technology}>{technology}</span>
+                <div className="modal-block">
+                  <strong>Technologies</strong>
+                  <div className="tag-row">
+                    {project.technologies.map((technology) => (
+                      <span key={technology}>{technology}</span>
                   ))}
+                  </div>
                 </div>
-              </div>
+
+                {project.relatedRepos?.length ? (
+                  <div className="modal-block">
+                    <strong>Related Repositories</strong>
+                    <div className="related-repos">
+                      {project.relatedRepos.map((repo) => (
+                        <a key={repo.url} href={repo.url} target="_blank" rel="noopener noreferrer">
+                          <GitBranch size={15} />
+                          {repo.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
 
                 <div className="modal-block">
                   <strong>Screenshots / Demo</strong>

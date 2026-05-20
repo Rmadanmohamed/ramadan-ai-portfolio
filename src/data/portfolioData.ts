@@ -34,7 +34,7 @@ export const portfolioData = {
     roles: ['AI Engineer', 'Machine Learning Engineer', 'Data Scientist', 'Computer Vision Builder'],
     headline: 'Building practical intelligence for healthcare, agriculture, robotics, and scientific discovery.',
     summary:
-      'Passionate AI and Computer Science student focused on practical, scalable technologies that solve real-world problems. Huawei-certified AI Professional and published researcher with high-accuracy ML work across healthcare, smart agriculture, robotics, optimization, NLP, and computer vision.',
+      'Artificial Intelligence and Computer Science student focused on applied machine learning, computer vision, medical AI, smart agriculture systems, robotics, and full-stack AI applications.',
     email: 'rm3176602@gmail.com',
     phone: '01000319057',
     linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-89085a366/',
@@ -53,7 +53,7 @@ export const portfolioData = {
     { label: 'Contact', href: '#contact' },
   ],
   stats: [
-    { label: 'Projects', value: '34', detail: 'GitHub and CV case studies' },
+    { label: 'Projects', value: '21', detail: 'Clean GitHub case studies' },
     { label: 'Top Model Accuracy', value: '99%', detail: 'TabNet nutrition system' },
     { label: 'Prize Funding', value: '30K EGP', detail: 'MansTech Hackathon' },
     { label: 'Publication', value: 'Springer', detail: 'ISBCOM 2025' },
