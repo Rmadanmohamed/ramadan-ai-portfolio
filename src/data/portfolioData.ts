@@ -39,7 +39,7 @@ export const portfolioData = {
     phone: '01000319057',
     linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-89085a366/',
     github: 'https://github.com/Rmadanmohamed/ramadan-ai-portfolio',
-    cvUrl: '/assets/Ramadan_Mohamed_CV.docx',
+    cvUrl: '/assets/Ramadan_Mohamed_Hassan_CV.pdf',
     photoUrl: '/assets/my-photo.jpg',
     fallbackPhotoUrl: '/assets/profile-placeholder.svg',
   },
