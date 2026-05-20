@@ -81,18 +81,18 @@ export const projects: Project[] = [
     createdAt: '2026-05-19',
     updatedAt: '2026-05-19',
     summary:
-      'AI-powered smart agriculture system combining dashboards, crop intelligence, robotics, drones, IoT sensor data, and traceability workflows.',
+      'End-to-end AI-powered smart agriculture system combining farm operations, crop intelligence, robotics, drones, IoT sensor data, blockchain traceability, and analytics.',
     description:
-      'AgriNova is the unified smart agriculture project that brings together the deployed dashboard workspace and the ML notebook suite. It covers crop recommendation, plant disease classification, soil/crop prediction, IoT monitoring, robotics and drone/UAV workflows, blockchain-inspired data integrity, AI recommendations, farm analytics, and Power BI-ready reporting.',
+      'AgriNova is a complete integrated smart agriculture system, not just a dashboard. It brings together the deployed farm management workspace and the ML notebook suite to support crop recommendation, plant disease classification, soil/crop prediction, IoT monitoring, robotics and drone/UAV workflows, blockchain-inspired traceability and data integrity, AI recommendations, farm analytics, and Power BI-ready reporting.',
     problem:
       'Modern farms need connected decision support across crop health, soil conditions, sensors, robotics, drone monitoring, sustainability, and operational analytics instead of isolated notebooks and reports.',
     features: [
-      'Interactive smart agriculture dashboard',
+      'Integrated smart agriculture operating system',
       'Crop recommendation and crop yield prediction workflows',
       'Plant disease classification experiments',
       'Soil nutrient analysis with explainability',
       'IoT sensor, robot mission, and drone mission modules',
-      'Blockchain-inspired traceability and data integrity views',
+      'Blockchain-inspired traceability and data integrity workflows',
       'AI recommendation and farm analytics modules',
     ],
     technologies: [
@@ -108,6 +108,7 @@ export const projects: Project[] = [
       'XGBoost',
       'LightGBM',
       'Plotly',
+      'Blockchain traceability',
       'CSV datasets',
     ],
     models: [
@@ -133,8 +134,18 @@ export const projects: Project[] = [
       'One plant disease notebook reports over 97% accuracy in markdown; it should be rerun before treating it as a verified final benchmark.',
     ],
     architecture:
-      'Next.js dashboard and API routes for the product layer, Power BI assets for analytics, and agriculture ML notebooks for crop, soil, yield, disease, and explainability workflows.',
-    skills: ['AI product design', 'Agriculture ML', 'Dashboard UX', 'Computer vision', 'IoT analytics', 'Power BI', 'Research-to-product integration'],
+      'Next.js product layer and API routes for farm operations, Power BI assets for analytics, blockchain-inspired traceability flows for data integrity, and agriculture ML notebooks for crop, soil, yield, disease, and explainability workflows.',
+    skills: [
+      'AI product design',
+      'Agriculture ML',
+      'Smart agriculture systems',
+      'Dashboard UX',
+      'Computer vision',
+      'IoT analytics',
+      'Blockchain traceability',
+      'Power BI',
+      'Research-to-product integration',
+    ],
     achievements: [
       '1st Place at Computer Science and Engineering Projects Exhibition 2026',
       '2nd Place at MansTech Hackathon',
