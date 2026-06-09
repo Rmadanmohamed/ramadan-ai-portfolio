@@ -2,6 +2,14 @@
 
 Premium React, TypeScript, Tailwind CSS, Framer Motion, and React Three Fiber portfolio website generated from `Ramadan_Mohamed_CV.docx`.
 
+Live portfolio: https://ramadan-ai-portfolio.vercel.app
+
+Author links:
+
+- GitHub: https://github.com/Rmadanmohamed
+- LinkedIn: https://www.linkedin.com/in/ramadan-mohamed-657686365
+- Portfolio: https://ramadan-ai-portfolio.vercel.app
+
 ## Tech Stack
 
 - React + TypeScript
@@ -73,7 +81,7 @@ npm run preview
 - Add your personal photo at `public/assets/my-photo.jpg`. The site is already wired to use this path in `src/data/portfolioData.ts`.
 - Replace the downloadable CV at `public/assets/Ramadan_Mohamed_CV.docx` when you update the CV.
 - If you prefer a different photo filename, update `profile.photoUrl` in `src/data/portfolioData.ts`.
-- If you add GitHub later, update `profile.github` in `src/data/portfolioData.ts`; the UI will show it automatically.
+- Update `profile.github`, `profile.linkedin`, and project links in `src/data/portfolioData.ts` and `src/data/projects.ts` when verified links change.
 
 ## Deploy to Vercel
 

@@ -131,7 +131,7 @@ export const projects: Project[] = [
       '1st Place at Computer Science and Engineering Projects Exhibition 2026.',
       '2nd Place at MansTech Hackathon.',
       'Won 30,000 EGP.',
-      'One plant disease notebook reports over 97% accuracy in markdown; it should be rerun before treating it as a verified final benchmark.',
+      'Plant disease and crop intelligence notebooks are included as research workflows; final metrics should be rerun before being treated as verified benchmarks.',
     ],
     architecture:
       'Next.js product layer and API routes for farm operations, Power BI assets for analytics, blockchain-inspired traceability flows for data integrity, and agriculture ML notebooks for crop, soil, yield, disease, and explainability workflows.',
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     relatedRepos: [
       { label: 'Dashboard repository', url: 'https://github.com/Rmadanmohamed/agrinova-smart-agriculture-dashboard' },
       { label: 'ML suite repository', url: 'https://github.com/Rmadanmohamed/smart-agriculture-ml-suite' },
-      { label: 'Live dashboard repository', url: 'https://github.com/Rmadanmohamed/AgriNova-AI-Dashboard' },
+      { label: 'Legacy dashboard repository', url: 'https://github.com/Rmadanmohamed/AgriNova-AI-Dashboard' },
     ],
   },
   {
@@ -182,6 +182,10 @@ export const projects: Project[] = [
     architecture: 'Notebook-led model training, saved model artifact, API prototype, and lightweight UI experiments.',
     skills: ['Medical imaging', 'Transfer learning', 'API inference', 'Segmentation experimentation', 'Model evaluation'],
     githubUrl: 'https://github.com/Rmadanmohamed/brain-tumor-mri-ai-system',
+    notes: [
+      'Educational and portfolio demonstration only. This is not a medical diagnosis tool and must not be used for clinical decisions.',
+      'Live deployment will be added only after the model and demo app are tested successfully.',
+    ],
   },
   {
     id: 'medscan-ai-medical-diagnosis-platform',
@@ -206,6 +210,10 @@ export const projects: Project[] = [
     architecture: 'Streamlit app with separate analyzer modules and a requirements-based Python environment.',
     skills: ['Medical AI prototyping', 'Streamlit apps', 'Image processing', 'Risk prediction workflows'],
     githubUrl: 'https://github.com/Rmadanmohamed/medscan-ai-medical-diagnosis-platform',
+    notes: [
+      'Educational and portfolio demonstration only. This is not a medical diagnosis tool and must not be used for clinical decisions.',
+      'No independently verified clinical performance metric is claimed.',
+    ],
   },
   {
     id: 'breast-cancer-classification-ml',
