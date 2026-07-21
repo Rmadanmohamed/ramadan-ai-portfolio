@@ -7,9 +7,9 @@ export function Experience() {
   return (
     <section id="experience" className="section-shell">
       <SectionHeader
-        eyebrow="Experience"
-        title="Internships and training across production AI, LLMs, Huawei AI, and applied ML."
-        description="A timeline designed for quick recruiter scanning, with the strongest delivery signals surfaced first."
+        eyebrow="Professional Experience"
+        title="Applied AI delivery across automation, healthcare, and deployment-oriented systems."
+        description="Professional roles focused on production workflows, backend AI services, and practical machine learning."
       />
 
       <div className="experience-layout">
@@ -32,6 +32,7 @@ export function Experience() {
               <span>{experience.date}</span>
               <h3>{experience.company}</h3>
               <strong>{experience.role}</strong>
+              <p className="experience-arrangement">{experience.arrangement}</p>
             </div>
             <ul>
               {experience.bullets.map((bullet) => (

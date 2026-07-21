@@ -1,33 +1,31 @@
-import { BookOpenCheck, Languages } from 'lucide-react';
+import { BadgeCheck, Languages } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { SectionHeader } from './SectionHeader';
 
 export function Courses() {
   return (
-    <section id="courses" className="section-shell compact-section">
+    <section id="certifications" className="section-shell compact-section">
       <SectionHeader
-        eyebrow="Courses & Languages"
-        title="Continuous learning across vision, NLP, full-stack engineering, data science, and AI."
+        eyebrow="Certifications & Training"
+        title="Focused training in LLM applications and industry AI practice."
       />
 
       <div className="courses-layout">
         <div className="courses-grid">
-          {portfolioData.courses.map((course, index) => (
+          {portfolioData.certifications.map((certificate, index) => (
             <motion.article
               className="course-card glass-panel"
-              key={course.title}
+              key={certificate.provider}
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{ duration: 0.4, delay: index * 0.04 }}
             >
-              <BookOpenCheck size={20} />
-              <span>
-                {course.provider} / {course.date}
-              </span>
-              <h3>{course.title}</h3>
-              <p>{course.focus}</p>
+              <BadgeCheck size={20} />
+              <span>{certificate.provider}</span>
+              <h3>{certificate.title}</h3>
+              <p>{certificate.details}</p>
             </motion.article>
           ))}
         </div>

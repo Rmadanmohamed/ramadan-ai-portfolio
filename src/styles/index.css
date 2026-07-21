@@ -42,6 +42,7 @@ html[data-theme="light"] {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 92px;
+  overflow-x: hidden;
 }
 
 body {
@@ -835,6 +836,24 @@ html[data-theme="light"] .mobile-nav {
   align-items: start;
 }
 
+.research-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.research-content h3,
+.research-content p,
+.project-card h3,
+.contact-links span {
+  overflow-wrap: anywhere;
+}
+
+.experience-arrangement {
+  margin: 6px 0 0;
+  color: var(--cyan);
+  font-weight: 750;
+}
+
 .research-icon {
   width: 58px;
   height: 58px;
@@ -995,6 +1014,11 @@ html[data-theme="light"] .project-sort select {
   padding: 22px;
   overflow: hidden;
   outline: none;
+}
+
+.project-card--flagship {
+  grid-column: span 2;
+  border-color: var(--line-strong);
 }
 
 .project-card::before,
@@ -1411,6 +1435,14 @@ html[data-theme="light"] .project-sort select {
   padding: 22px;
 }
 
+.skill-tags {
+  align-content: start;
+}
+
+.skill-tags span {
+  padding: 9px 11px;
+}
+
 .skill-panel-head {
   display: grid;
   grid-template-columns: 44px 1fr;
@@ -1815,6 +1847,10 @@ html[data-theme="light"] .project-sort select {
     min-height: auto;
   }
 
+  .project-card--flagship {
+    grid-column: auto;
+  }
+
   .orbit-system {
     width: 288px;
     height: 288px;
@@ -1838,6 +1874,10 @@ html[data-theme="light"] .project-sort select {
   .site-nav {
     width: calc(100% - 20px);
     top: 10px;
+  }
+
+  .hero-section {
+    padding-top: 138px;
   }
 
   .brand-mark strong {

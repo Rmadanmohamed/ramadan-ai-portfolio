@@ -8,11 +8,11 @@ export function Research() {
     <section id="research" className="section-shell">
       <SectionHeader
         eyebrow="Research & Publications"
-        title="Published robotics path-planning research with computer vision integration."
-        description="A research profile that ties algorithms, perception, and autonomous navigation together."
+        title="Published work in smart agriculture and robotic path planning."
+        description="Two peer-reviewed contributions spanning edge-cloud AI, autonomous systems, IoT, blockchain validation, and robotics."
       />
 
-      {portfolioData.research.map((paper) => (
+      <div className="research-grid">{portfolioData.research.map((paper) => (
         <motion.article
           className="research-card glass-panel"
           key={paper.title}
@@ -37,12 +37,12 @@ export function Research() {
               ))}
             </div>
           </div>
-          <a className="research-link" href={paper.link} target="_blank" rel="noreferrer">
+          <a className="research-link" href={paper.link} target="_blank" rel="noopener noreferrer">
             Publication
             <ArrowUpRight size={16} />
           </a>
         </motion.article>
-      ))}
+      ))}</div>
     </section>
   );
 }

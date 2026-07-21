@@ -1,382 +1,74 @@
 import { projects } from './projects';
 export type { Project, ProjectCategory } from './projects';
 
-export type SkillGroup = {
-  title: string;
-  accent: string;
-  summary: string;
-  skills: Array<{
-    name: string;
-    level?: number;
-    label?: string;
-  }>;
-};
-
-export type Experience = {
-  company: string;
-  role: string;
-  date: string;
-  bullets: string[];
-  tags: string[];
-};
-
-export type Award = {
-  title: string;
-  date: string;
-  description: string;
-  kind: 'award' | 'certificate' | 'contest';
-};
-
 export const portfolioData = {
   profile: {
     name: 'Ramadan Mohamed Hassan',
-    title: 'AI Engineer / Machine Learning Engineer / Data Scientist',
-    roles: ['AI Engineer', 'Machine Learning Engineer', 'Data Scientist', 'Computer Vision Builder'],
-    headline: 'Building practical intelligence for healthcare, agriculture, robotics, and scientific discovery.',
-    summary:
-      'Artificial Intelligence and Computer Science student focused on applied machine learning, computer vision, medical AI, smart agriculture systems, robotics, and full-stack AI applications.',
+    title: 'AI Engineer | AI Automation | LLM & RAG Systems | Machine Learning',
+    roles: ['AI Engineer', 'AI Automation Engineer', 'LLM & RAG Engineer', 'AI Backend Engineer'],
+    headline: 'Building production-oriented AI systems, automation workflows, and deployable machine-learning services.',
+    summary: 'Recent B.Sc. Computer Science - Artificial Intelligence graduate experienced with FastAPI, n8n, APIs, LLM applications, RAG, machine learning, and computer vision. Co-author of research published by Elsevier and Springer, with award-winning AI projects.',
     email: 'rm3176602@gmail.com',
-    phone: '01000319057',
+    phone: '+201000319057',
     linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-657686365',
     github: 'https://github.com/Rmadanmohamed',
+    portfolioUrl: 'https://ramadan-ai-portfolio.vercel.app/',
     cvUrl: '/assets/Ramadan_Mohamed_Hassan_CV.pdf',
+    cvDocxUrl: '/assets/Ramadan_Mohamed_CV.docx',
     photoUrl: '/assets/my-photo.jpg',
     fallbackPhotoUrl: '/assets/profile-placeholder.svg',
   },
   nav: [
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Research', href: '#research' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
+    { label: 'Research', href: '#research' },
     { label: 'Awards', href: '#awards' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Training', href: '#certifications' },
+    { label: 'Education', href: '#education' },
     { label: 'Contact', href: '#contact' },
   ],
   stats: [
-    { label: 'Projects', value: '21', detail: 'Audited GitHub case studies' },
-    { label: 'Demos', value: 'Verified', detail: 'Live links added only after testing' },
-    { label: 'Prize Funding', value: '30K EGP', detail: 'MansTech Hackathon' },
-    { label: 'Publication', value: 'Springer', detail: 'ISBCOM 2025' },
+    { label: 'Featured Projects', value: '5', detail: 'Production-oriented AI systems' },
+    { label: 'Publications', value: '2', detail: 'Elsevier Q1 and Springer' },
+    { label: 'Plant AI Accuracy', value: '96.9%', detail: 'AgriNova VGG16' },
+    { label: 'Prize', value: '30K EGP', detail: 'MansTech Hackathon' },
   ],
-  specializations: [
-    'Machine Learning',
-    'Deep Learning',
-    'Computer Vision',
-    'Natural Language Processing',
-    'Robotics',
-    'IoT',
-    'Blockchain',
-    'Optimization Algorithms',
-    'Medical Image Analysis',
-    'Generative AI',
-  ],
-  education: [
-    {
-      school: 'New Mansoura University',
-      program: 'Computer Science, Artificial Intelligence Program',
-      date: 'September 2022 - June 2026',
-      details:
-        'Focused on AI, machine learning, data science, software engineering, algorithms, and intelligent systems.',
-    },
-  ],
+  specializations: ['AI Automation', 'LLM Applications', 'RAG Systems', 'AI Backend Services', 'Machine Learning', 'Computer Vision', 'API Integrations', 'Data Pipelines'],
+  education: [{ school: 'New Mansoura University', program: 'B.Sc. Computer Science - Artificial Intelligence Program', date: 'Sep 2022 - Jun 2026', details: 'Recent graduate in Computer Science with a specialization in Artificial Intelligence.' }],
   experiences: [
-    {
-      company: 'ReNile Company',
-      role: 'Artificial Intelligence Engineer Intern',
-      date: 'March 2026 - May 2026',
-      bullets: [
-        'Developed and deployed production-ready ML and deep learning solutions from business requirements into scalable AI-powered systems.',
-        'Worked on model optimization and data preprocessing while collaborating with engineering and product teams.',
-      ],
-      tags: ['Production ML', 'Deep Learning', 'Model Optimization', 'Data Preprocessing'],
-    },
-    {
-      company: 'NVIDIA',
-      role: 'AI & Prompt Engineering Trainee',
-      date: 'August 2025 - October 2025',
-      bullets: [
-        'Mastered generative AI practices, LLM applications, and advanced prompt engineering methodologies.',
-        'Strengthened Python programming skills for data processing and end-to-end AI application development.',
-      ],
-      tags: ['Generative AI', 'LLMs', 'Prompt Engineering', 'Python'],
-    },
-    {
-      company: 'Huawei ICT Academy (HCIP)',
-      role: 'AI Professional Intern',
-      date: 'July 2025 - August 2025',
-      bullets: [
-        'Completed an intensive 80-hour professional certification program covering complex AI architectures and implementations.',
-      ],
-      tags: ['HCIP', 'AI Architecture', 'Professional AI'],
-    },
-    {
-      company: 'NTI / Huawei Egyptian Talent Academy',
-      role: 'Artificial Intelligence Trainee',
-      date: 'July 2025 - August 2025',
-      bullets: [
-        'Completed an 80-hour AI training program with a 97% score, covering core ML algorithms and data analysis methodologies.',
-      ],
-      tags: ['Machine Learning', 'Data Analysis', '97% Score'],
-    },
-    {
-      company: 'Huawei ICT Academy (HCIA)',
-      role: 'AI Intern',
-      date: 'June 2025 - July 2025',
-      bullets: [
-        'Built foundational proficiency in industry-standard AI applications and machine learning implementation.',
-      ],
-      tags: ['HCIA', 'Machine Learning', 'AI Foundations'],
-    },
-  ] satisfies Experience[],
+    { company: 'Rawi Digital Transformation & Services', role: 'AI & Machine Learning Engineer', arrangement: 'Full-Time, Remote', date: 'Jun 2026 - Present', bullets: ['Build AI automation solutions and LLM-based workflows using n8n, FastAPI, REST APIs, RAG, and vector databases to support digital transformation and internal business processes.', 'Develop backend AI services, reporting automations, API integrations, and data pipelines connecting business systems with machine learning and LLM capabilities.'], tags: ['AI Automation', 'n8n', 'FastAPI', 'RAG', 'Vector Databases'] },
+    { company: 'Al Osrah Group - Healthcare & Medical Services', role: 'AI Engineer', arrangement: 'Part-Time, On-site', date: 'Jun 2026 - Jul 2026', bullets: ['Developed machine-learning models and internal automation tools for pharmacy, medical-distribution, and laboratory operations.', 'Applied OCR and LLM-assisted workflows to digitize records and support reporting, inventory analysis, and demand-pattern evaluation.'], tags: ['Healthcare AI', 'OCR', 'LLM Workflows', 'Inventory Analysis'] },
+    { company: 'ReNile Company', role: 'Artificial Intelligence Engineer Intern', arrangement: 'On-site', date: 'Mar 2026 - May 2026', bullets: ['Contributed to deployment-oriented AI projects covering data preprocessing, model optimization, and practical machine-learning implementation.', 'Developed deployable AI components supporting solutions used by approximately 70% of ReNile\u2019s client base, based on internal company estimates.'], tags: ['Deployable AI', 'Model Optimization', 'Data Preprocessing'] },
+  ],
   research: [
-    {
-      venue: 'Springer / ISBCOM 2025 at ElSewedy University of Technology, Egypt',
-      title: 'Hybrid Random Walk-Dijkstra Approach for Efficient Coverage Path Planning in Robotics',
-      link: 'https://bit.ly/3OFuXfr',
-      contribution:
-        'Developed a robotic path-planning algorithm that combines random walk strategies with Dijkstra algorithm for navigation efficiency.',
-      details: [
-        'Integrated computer vision for real-time obstacle detection.',
-        'Presented the research at an international conference.',
-        'Connected algorithmic coverage planning with robotics navigation and perception.',
-      ],
-    },
+    { venue: 'Internet of Things - Elsevier | Q1 Journal | Volume 39 | Article 102025 | 2026', title: 'An Edge-Cloud AI-Robotics Framework with Blockchain-Based Validation for Crop Yield Prediction and Plant Health Monitoring', link: 'https://doi.org/10.1016/j.iot.2026.102025', contribution: 'Co-developed an edge-cloud smart-agriculture framework integrating artificial intelligence, autonomous robotics, UAV imagery, IoT sensor networks, and blockchain-backed validation for crop-yield prediction and plant-health monitoring.', details: ['Edge-cloud computing and artificial intelligence', 'Autonomous robotics, UAV imagery, and IoT sensor networks', 'Blockchain-backed validation for crop-yield prediction and plant-health monitoring'] },
+    { venue: 'Springer Conference Proceedings | ISBCOM 2025 | 2025', title: 'Hybrid Random Walk-Dijkstra Approach for Efficient Coverage Path Planning in Robotics', link: 'https://bit.ly/3OFuXfr', contribution: 'Developed a robotic path-planning approach combining Random Walk, Dijkstra\u2019s algorithm, and computer vision for obstacle-aware navigation.', details: ['Hybrid Random Walk-Dijkstra path planning', 'Computer-vision-assisted obstacle awareness', 'Robotics coverage and navigation workflow'] },
   ],
   projects,
   awards: [
-    {
-      title: '2nd Place - MansTech Hackathon',
-      date: 'April 2026',
-      description:
-        'Won 30,000 EGP for an AI, robotics, and IoT agricultural solution endorsed by ITIDA.',
-      kind: 'award',
-    },
-    {
-      title: '1st Place - Computer Science and Engineering Projects Exhibition 2026',
-      date: 'May 2026',
-      description:
-        'Awarded for AGRINOVA smart agriculture project, recognizing innovation, creativity, and technical excellence.',
-      kind: 'award',
-    },
-    {
-      title: '1st Place - Annual University Projects Exhibition',
-      date: '2025',
-      description:
-        'Recognized for innovative optimization algorithms, outperforming 45 competing projects.',
-      kind: 'award',
-    },
-    {
-      title: 'Certificate for Research Publication - Springer',
-      date: '2025',
-      description:
-        'Published and cited internationally for contributions to robotic path planning.',
-      kind: 'certificate',
-    },
-    {
-      title: 'ICPC & ECPC Qualifications',
-      date: '2023',
-      description:
-        'Ranked in the top 15% of teams in International and Egyptian Collegiate Programming Contests.',
-      kind: 'contest',
-    },
-    {
-      title: 'Huawei ICT Academy - HCIP AI Professional',
-      date: '2025',
-      description:
-        'Completed an 80-hour professional AI certification program covering advanced AI architectures.',
-      kind: 'certificate',
-    },
-    {
-      title: 'Huawei ICT Academy - HCIA AI',
-      date: '2025',
-      description:
-        'Completed foundational AI training in industry-standard machine learning implementation.',
-      kind: 'certificate',
-    },
-    {
-      title: 'NTI / Huawei Egyptian Talent Academy',
-      date: '2025',
-      description: 'Completed an 80-hour AI training program with a 97% score.',
-      kind: 'certificate',
-    },
-  ] satisfies Award[],
+    { title: '2nd Place', organization: 'MansTech Hackathon', date: 'Apr 2026', description: 'Won 30,000 EGP for an AI, robotics, and IoT agricultural solution endorsed by ITIDA.', kind: 'award' },
+    { title: '1st Place', organization: 'Computer Science and Engineering Projects Exhibition', date: '2026', description: 'Awarded for the AgriNova smart-agriculture system.', kind: 'award' },
+    { title: '1st Place', organization: 'Annual University Projects Exhibition', date: '2025', description: 'Recognized for an innovative optimization algorithm among 45 projects.', kind: 'award' },
+    { title: 'ICPC & ECPC Qualification', organization: 'ICPC & ECPC', date: '2023', description: 'Ranked among the top 15% of participating teams.', kind: 'contest' },
+  ],
+  certifications: [
+    { provider: 'NVIDIA', title: 'LLM & Generative AI Training', details: 'Building LLM Applications with Prompt Engineering; AI for All: From Basics to GenAI Practice.' },
+    { provider: 'Huawei ICT Academy', title: 'AI Certifications', details: 'HCIA AI; HCIP AI.' },
+    { provider: 'NTI / Huawei Egyptian Talent Academy', title: 'Artificial Intelligence Training', details: '80-hour Artificial Intelligence Training, 97% score.' },
+  ],
   skills: [
-    {
-      title: 'Programming Languages',
-      accent: 'from-cyan-300 to-blue-500',
-      summary: 'Core engineering languages used across AI, automation, and web systems.',
-      skills: [
-        { name: 'Python', level: 94, label: 'Advanced' },
-        { name: 'C++', level: 82, label: 'Strong' },
-        { name: 'C', level: 78, label: 'Strong' },
-        { name: 'C#', level: 72, label: 'Applied' },
-        { name: 'JavaScript', level: 80, label: 'Strong' },
-        { name: 'HTML5 / CSS3', level: 84, label: 'Strong' },
-      ],
-    },
-    {
-      title: 'AI / ML',
-      accent: 'from-violet-300 to-fuchsia-500',
-      summary: 'Modeling, preprocessing, feature engineering, prediction, and applied AI workflows.',
-      skills: [
-        { name: 'Machine Learning', level: 92, label: 'Advanced' },
-        { name: 'Predictive Modeling', level: 90, label: 'Advanced' },
-        { name: 'XGBoost', level: 86, label: 'Strong' },
-        { name: 'Scikit-learn', level: 88, label: 'Strong' },
-        { name: 'Optimization Algorithms', level: 89, label: 'Award-winning' },
-      ],
-    },
-    {
-      title: 'Deep Learning',
-      accent: 'from-blue-300 to-indigo-500',
-      summary: 'CNNs, transfer learning, transformer systems, and medical image models.',
-      skills: [
-        { name: 'TensorFlow', level: 86, label: 'Strong' },
-        { name: 'PyTorch', level: 82, label: 'Strong' },
-        { name: 'CNNs', level: 88, label: 'Strong' },
-        { name: 'Transfer Learning', level: 88, label: 'Strong' },
-        { name: 'Graph Neural Networks', level: 74, label: 'Specialized' },
-      ],
-    },
-    {
-      title: 'NLP',
-      accent: 'from-sky-300 to-cyan-500',
-      summary: 'Transformer architectures, sentiment analysis, LLMs, and retrieval workflows.',
-      skills: [
-        { name: 'BERT', level: 86, label: 'Strong' },
-        { name: 'Transformers', level: 84, label: 'Strong' },
-        { name: 'LLMs', level: 82, label: 'Applied' },
-        { name: 'Generative AI', level: 84, label: 'Applied' },
-        { name: 'Prompt Engineering', level: 88, label: 'NVIDIA training' },
-      ],
-    },
-    {
-      title: 'Computer Vision',
-      accent: 'from-teal-300 to-emerald-500',
-      summary: 'Detection, image classification, medical imaging, and robotic perception.',
-      skills: [
-        { name: 'Object Detection', level: 88, label: 'Strong' },
-        { name: 'Medical Image Analysis', level: 90, label: 'Specialized' },
-        { name: 'Faster R-CNN', level: 84, label: 'Applied' },
-        { name: 'VGG16', level: 86, label: 'Applied' },
-        { name: 'Image Processing', level: 86, label: 'Strong' },
-      ],
-    },
-    {
-      title: 'Data Science',
-      accent: 'from-lime-300 to-cyan-500',
-      summary: 'Data cleaning, ETL, visualization, statistics, and scientific experimentation.',
-      skills: [
-        { name: 'Pandas', level: 88, label: 'Strong' },
-        { name: 'NumPy', level: 88, label: 'Strong' },
-        { name: 'Matplotlib', level: 82, label: 'Applied' },
-        { name: 'Seaborn', level: 80, label: 'Applied' },
-        { name: 'ETL Pipelines', level: 78, label: 'Applied' },
-      ],
-    },
-    {
-      title: 'Cloud',
-      accent: 'from-blue-200 to-cyan-400',
-      summary: 'Cloud deployment and AI platform integrations.',
-      skills: [
-        { name: 'AWS', level: 74, label: 'Applied' },
-        { name: 'GCP', level: 74, label: 'Applied' },
-        { name: 'Cloud Deployment', level: 78, label: 'Applied' },
-      ],
-    },
-    {
-      title: 'MLOps',
-      accent: 'from-purple-300 to-blue-500',
-      summary: 'APIs, deployment, monitoring, and production AI delivery.',
-      skills: [
-        { name: 'API Development', level: 80, label: 'Applied' },
-        { name: 'Model Monitoring', level: 76, label: 'Applied' },
-        { name: 'Hugging Face', level: 80, label: 'Applied' },
-        { name: 'LangChain', level: 78, label: 'Applied' },
-        { name: 'RAG', level: 78, label: 'Applied' },
-        { name: 'FAISS / Pinecone', level: 76, label: 'Applied' },
-      ],
-    },
-    {
-      title: 'Databases',
-      accent: 'from-cyan-300 to-teal-500',
-      summary: 'Relational and NoSQL data storage for AI and product systems.',
-      skills: [
-        { name: 'PostgreSQL', level: 78, label: 'Applied' },
-        { name: 'MongoDB', level: 76, label: 'Applied' },
-        { name: 'Data Collection', level: 84, label: 'Strong' },
-        { name: 'Data Cleaning', level: 86, label: 'Strong' },
-      ],
-    },
-    {
-      title: 'Web Development',
-      accent: 'from-indigo-300 to-sky-500',
-      summary: 'Front-end development, responsive systems, and full-stack product delivery.',
-      skills: [
-        { name: 'React', level: 82, label: 'Strong' },
-        { name: 'Node.js', level: 78, label: 'Applied' },
-        { name: 'Responsive Design', level: 84, label: 'Strong' },
-        { name: 'Secure Authentication', level: 74, label: 'Applied' },
-        { name: 'Payment Gateways', level: 72, label: 'Applied' },
-      ],
-    },
-    {
-      title: 'Robotics / IoT',
-      accent: 'from-emerald-300 to-sky-500',
-      summary: 'Autonomous systems, UAV operations, sensors, edge processing, and robotics research.',
-      skills: [
-        { name: 'Robot Assembly', level: 82, label: 'Applied' },
-        { name: 'UAV Operations', level: 84, label: 'Applied' },
-        { name: 'Sensor Networks', level: 82, label: 'Applied' },
-        { name: 'Real-time Processing', level: 80, label: 'Applied' },
-        { name: 'Path Planning', level: 90, label: 'Published' },
-      ],
-    },
-    {
-      title: 'Blockchain',
-      accent: 'from-violet-300 to-cyan-500',
-      summary: 'Smart contract integration for data integrity in IoT frameworks.',
-      skills: [
-        { name: 'Smart Contracts', level: 78, label: 'Applied' },
-        { name: 'Data Integrity', level: 82, label: 'Applied' },
-        { name: 'IoT Blockchain', level: 80, label: 'Applied' },
-      ],
-    },
-  ] satisfies SkillGroup[],
+    { title: 'Programming', skills: ['Python', 'JavaScript/TypeScript', 'SQL'] },
+    { title: 'AI & Machine Learning', skills: ['Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP', 'Predictive Modeling', 'Feature Engineering', 'Model Evaluation'] },
+    { title: 'LLM & AI Systems', skills: ['LLM Applications', 'Retrieval-Augmented Generation (RAG)', 'AI Agents', 'Prompt Engineering', 'LangChain', 'LangGraph'] },
+    { title: 'Frameworks & Libraries', skills: ['PyTorch', 'TensorFlow/Keras', 'Scikit-learn', 'OpenCV', 'Hugging Face Transformers', 'Pandas', 'NumPy'] },
+    { title: 'Backend & Automation', skills: ['FastAPI', 'REST APIs', 'n8n', 'Workflow Automation', 'API Integrations', 'Streamlit'] },
+    { title: 'Data & Deployment', skills: ['PostgreSQL', 'MongoDB', 'FAISS', 'Pinecone', 'Git/GitHub', 'Vercel'] },
+  ],
   courses: [
-    {
-      title: 'Computer Vision Specialization',
-      provider: 'Coursera',
-      date: '2023',
-      focus: 'Image processing, analysis techniques, object detection, and recognition algorithms.',
-    },
-    {
-      title: 'Natural Language Processing with Deep Learning',
-      provider: 'Coursera',
-      date: '2023',
-      focus: 'Text processing, sentiment analysis, language modeling, and generation techniques.',
-    },
-    {
-      title: 'Full Stack Web Development Course',
-      provider: 'Creativo',
-      date: '2022',
-      focus: 'Comprehensive training in web development technologies and practices.',
-    },
-    {
-      title: 'Introduction to Data Science',
-      provider: 'Udemy',
-      date: '2022',
-      focus: 'Fundamentals of data analysis, visualization, statistical methods, and data processing.',
-    },
-    {
-      title: 'Introduction to Artificial Intelligence',
-      provider: 'Udemy',
-      date: '2022',
-      focus: 'Core concepts of artificial intelligence, machine learning algorithms, and applications.',
-    },
+    { title: 'Computer Vision Specialization', provider: 'Coursera', date: '', focus: 'Advanced relevant coursework.' },
+    { title: 'NLP with Deep Learning', provider: 'Coursera', date: '', focus: 'Advanced relevant coursework.' },
   ],
-  languages: [
-    { name: 'Arabic', level: 'Native' },
-    { name: 'English', level: 'Bilingual' },
-  ],
+  languages: [{ name: 'Arabic', level: 'Native' }, { name: 'English', level: 'Professional Working Proficiency' }],
 };

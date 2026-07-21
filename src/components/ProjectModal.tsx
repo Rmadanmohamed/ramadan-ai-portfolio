@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Activity, ArrowUpRight, CheckCircle2, Cpu, ExternalLink, GitBranch, Layers3, X } from 'lucide-react';
+import { Activity, ArrowUpRight, CheckCircle2, Cpu, GitBranch, Layers3, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Project } from '../data/portfolioData';
 
@@ -71,12 +71,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     Open GitHub
                     <ArrowUpRight size={15} />
                   </a>
-                  {project.liveDemoUrl ? (
-                    <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="modal-link">
-                      <ExternalLink size={17} />
-                      Live Demo
-                    </a>
-                  ) : null}
                 </div>
 
                 <div className="modal-block">
@@ -162,33 +156,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                 </div>
 
-                {project.relatedRepos?.length ? (
-                  <div className="modal-block">
-                    <strong>Related Repositories</strong>
-                    <div className="related-repos">
-                      {project.relatedRepos.map((repo) => (
-                        <a key={repo.url} href={repo.url} target="_blank" rel="noopener noreferrer">
-                          <GitBranch size={15} />
-                          {repo.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
 
-                <div className="modal-block">
-                  <strong>Screenshots / Demo</strong>
-                  <p>{project.liveDemoUrl ? 'Live demo link available.' : 'Placeholder only. Screenshots or hosted demo can be added later.'}</p>
-                </div>
-
-                {project.notes?.length ? (
-                  <div className="modal-block modal-note">
-                    <strong>Notes</strong>
-                    {project.notes.map((note) => (
-                      <p key={note}>{note}</p>
-                    ))}
-                  </div>
-                ) : null}
             </div>
           </motion.article>
         </motion.div>

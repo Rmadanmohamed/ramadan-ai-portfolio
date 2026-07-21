@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowDown, Download, Mail, Sparkles } from 'lucide-react';
+import { ArrowDown, Code2, Download, ExternalLink, Mail, Sparkles } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
@@ -117,7 +117,7 @@ export function Hero() {
         >
           <span className="hero-kicker">
             <Sparkles size={16} />
-            Published AI researcher and Huawei-certified AI Professional
+            Production-oriented AI engineer and published researcher
           </span>
           <h1>
             {profile.name}
@@ -133,6 +133,12 @@ export function Hero() {
             </MagneticButton>
             <MagneticButton href={profile.cvUrl} download icon={<Download size={18} />} variant="secondary">
               Download CV
+            </MagneticButton>
+            <MagneticButton href={profile.github} target="_blank" rel="noopener noreferrer" icon={<Code2 size={18} />} variant="ghost">
+              GitHub
+            </MagneticButton>
+            <MagneticButton href={profile.linkedin} target="_blank" rel="noopener noreferrer" icon={<ExternalLink size={18} />} variant="ghost">
+              LinkedIn
             </MagneticButton>
             <MagneticButton href="#contact" icon={<Mail size={18} />} variant="ghost">
               Contact Me
@@ -165,8 +171,8 @@ export function Hero() {
             </div>
             <div>
               <span>Quick Profile</span>
-              <strong>AI / ML / Data Science</strong>
-              <p>Healthcare AI, Robotics, IoT, Blockchain, NLP, and Computer Vision.</p>
+              <strong>AI Systems & Automation</strong>
+              <p>LLM applications, RAG, FastAPI, n8n, machine learning, and computer vision.</p>
             </div>
           </motion.div>
         </motion.div>

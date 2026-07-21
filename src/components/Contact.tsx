@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Code2, ExternalLink, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Code2, Download, ExternalLink, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { SectionHeader } from './SectionHeader';
@@ -24,7 +24,7 @@ export function Contact() {
     <section id="contact" className="section-shell">
       <SectionHeader
         eyebrow="Contact"
-        title="Recruiter-friendly contact path for AI, ML, data science, and research roles."
+        title="Let\u2019s discuss AI engineering and automation opportunities."
         description="Fast links, CV download, and a clean contact form UI for direct outreach."
       />
 
@@ -51,16 +51,28 @@ export function Contact() {
               <Phone size={17} />
               <span>{profile.phone}</span>
             </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
               <ExternalLink size={17} />
               <span>LinkedIn</span>
             </a>
             {profile.github ? (
-              <a href={profile.github} target="_blank" rel="noreferrer">
+              <a href={profile.github} target="_blank" rel="noopener noreferrer">
                 <Code2 size={17} />
                 <span>GitHub</span>
               </a>
             ) : null}
+            <a href={profile.portfolioUrl} target="_blank" rel="noopener noreferrer">
+              <ExternalLink size={17} />
+              <span>Portfolio</span>
+            </a>
+            <a href={profile.cvUrl} download>
+              <Download size={17} />
+              <span>Download CV (PDF)</span>
+            </a>
+            <a href={profile.cvDocxUrl} download>
+              <Download size={17} />
+              <span>Download CV (DOCX)</span>
+            </a>
             <div>
               <MapPin size={17} />
               <span>Egypt / open to AI opportunities</span>

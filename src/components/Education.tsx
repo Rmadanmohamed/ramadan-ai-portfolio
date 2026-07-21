@@ -8,7 +8,7 @@ export function Education() {
     <section id="education" className="section-shell compact-section">
       <SectionHeader
         eyebrow="Education"
-        title="Academic base in computer science and artificial intelligence."
+        title="Recent B.Sc. graduate in computer science and artificial intelligence."
       />
 
       <div className="timeline">

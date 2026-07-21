@@ -35,13 +35,13 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Education />
         <Experience />
-        <Research />
         <Projects />
-        <Skills />
+        <Research />
         <Awards />
+        <Skills />
         <Courses />
+        <Education />
         <Contact />
       </main>
       <Footer />
