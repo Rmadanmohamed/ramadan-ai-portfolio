@@ -1,6 +1,33 @@
 import { projects } from './projects';
 export type { Project, ProjectCategory } from './projects';
 
+const certifications = [
+  {
+    provider: 'NVIDIA',
+    title: 'LLM & Generative AI Training',
+    credentials: [
+      'Building LLM Applications with Prompt Engineering',
+      'AI for All: From Basics to GenAI Practice',
+    ],
+    description: 'Applied training in prompt engineering, LLM application development, and generative AI practice.',
+    tags: ['LLM', 'Prompt Engineering', 'Generative AI'],
+  },
+  {
+    provider: 'Huawei ICT Academy',
+    title: 'AI Certifications',
+    credentials: ['HCIA AI', 'HCIP AI'],
+    description: 'Industry certification covering foundational and professional artificial intelligence practice.',
+    tags: ['AI', 'Machine Learning'],
+  },
+  {
+    provider: 'NTI / Huawei Egyptian Talent Academy',
+    title: 'Artificial Intelligence Training',
+    credentials: ['80-hour Artificial Intelligence Training - 97% score'],
+    description: 'Intensive applied artificial intelligence training delivered through the Egyptian Talent Academy.',
+    tags: ['Applied AI', '97% Score'],
+  },
+];
+
 export const portfolioData = {
   profile: {
     name: 'Ramadan Mohamed Hassan',
@@ -30,10 +57,13 @@ export const portfolioData = {
     { label: 'Contact', href: '#contact' },
   ],
   stats: [
-    { label: 'Featured Projects', value: '5', detail: 'Production-oriented AI systems' },
+    { label: 'Total Projects', value: String(projects.length), detail: 'Complete portfolio showcase' },
     { label: 'Publications', value: '2', detail: 'Elsevier Q1 and Springer' },
-    { label: 'Plant AI Accuracy', value: '96.9%', detail: 'AgriNova VGG16' },
-    { label: 'Prize', value: '30K EGP', detail: 'MansTech Hackathon' },
+    {
+      label: 'Certifications',
+      value: String(certifications.reduce((total, group) => total + group.credentials.length, 0)),
+      detail: 'NVIDIA, Huawei ICT Academy, and NTI',
+    },
   ],
   specializations: ['AI Automation', 'LLM Applications', 'RAG Systems', 'AI Backend Services', 'Machine Learning', 'Computer Vision', 'API Integrations', 'Data Pipelines'],
   education: [{ school: 'New Mansoura University', program: 'B.Sc. Computer Science - Artificial Intelligence Program', date: 'Sep 2022 - Jun 2026', details: 'Recent graduate in Computer Science with a specialization in Artificial Intelligence.' }],
@@ -53,11 +83,7 @@ export const portfolioData = {
     { title: '1st Place', organization: 'Annual University Projects Exhibition', date: '2025', description: 'Recognized for an innovative optimization algorithm among 45 projects.', kind: 'award' },
     { title: 'ICPC & ECPC Qualification', organization: 'ICPC & ECPC', date: '2023', description: 'Ranked among the top 15% of participating teams.', kind: 'contest' },
   ],
-  certifications: [
-    { provider: 'NVIDIA', title: 'LLM & Generative AI Training', details: 'Building LLM Applications with Prompt Engineering; AI for All: From Basics to GenAI Practice.' },
-    { provider: 'Huawei ICT Academy', title: 'AI Certifications', details: 'HCIA AI; HCIP AI.' },
-    { provider: 'NTI / Huawei Egyptian Talent Academy', title: 'Artificial Intelligence Training', details: '80-hour Artificial Intelligence Training, 97% score.' },
-  ],
+  certifications,
   skills: [
     { title: 'Programming', skills: ['Python', 'JavaScript/TypeScript', 'SQL'] },
     { title: 'AI & Machine Learning', skills: ['Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP', 'Predictive Modeling', 'Feature Engineering', 'Model Evaluation'] },

@@ -575,7 +575,7 @@ html[data-theme="light"] .mobile-nav {
 
 .stats-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -589,7 +589,11 @@ html[data-theme="light"] .mobile-nav {
 }
 
 .stat-card {
-  padding: 18px;
+  min-height: 142px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 22px;
 }
 
 .stat-card strong {
@@ -1571,8 +1575,79 @@ html[data-theme="light"] .project-sort select {
   align-items: stretch;
 }
 
-.courses-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.certification-card {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.certification-head {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.certification-head > svg {
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(34, 211, 238, 0.09);
+  color: var(--cyan);
+}
+
+.certification-head span {
+  color: var(--cyan);
+  font-size: 0.82rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.certification-head h3 {
+  margin: 5px 0 0;
+}
+
+.credential-list {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.credential-list li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 9px;
+  align-items: start;
+  color: var(--soft);
+  line-height: 1.5;
+  font-weight: 750;
+}
+
+.credential-list svg {
+  margin-top: 3px;
+  color: var(--teal);
+}
+
+.certification-card > p {
+  margin: 0 0 20px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.certification-tags {
+  margin-top: auto;
 }
 
 .course-card svg,
@@ -1586,7 +1661,31 @@ html[data-theme="light"] .project-sort select {
   gap: 16px;
 }
 
-.languages-card div {
+.languages-card--inline {
+  margin-top: 16px;
+}
+
+.languages-title,
+.languages-list {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.languages-title h3 {
+  margin: 0;
+}
+
+.languages-list {
+  flex-wrap: wrap;
+}
+
+.languages-list > div {
+  min-width: 240px;
+  flex: 1 1 280px;
+}
+
+.languages-list > div {
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -1750,10 +1849,10 @@ html[data-theme="light"] .project-sort select {
     min-height: 560px;
   }
 
-  .stats-strip,
   .specialization-grid,
   .projects-grid,
-  .awards-grid {
+  .awards-grid,
+  .certifications-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1805,6 +1904,7 @@ html[data-theme="light"] .project-sort select {
   .skills-grid,
   .awards-grid,
   .courses-grid,
+  .certifications-grid,
   .metric-grid,
   .case-study-grid,
   .project-toolbar {
