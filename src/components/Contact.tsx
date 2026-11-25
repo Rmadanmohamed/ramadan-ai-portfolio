@@ -69,10 +69,6 @@ export function Contact() {
               <Download size={17} />
               <span>Download CV (PDF)</span>
             </a>
-            <a href={profile.cvDocxUrl} download>
-              <Download size={17} />
-              <span>Download CV (DOCX)</span>
-            </a>
             <div>
               <MapPin size={17} />
               <span>Egypt / open to AI opportunities</span>
