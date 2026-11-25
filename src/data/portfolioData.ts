@@ -41,7 +41,6 @@ export const portfolioData = {
     github: 'https://github.com/Rmadanmohamed',
     portfolioUrl: 'https://ramadan-ai-portfolio.vercel.app/',
     cvUrl: '/assets/Ramadan_Mohamed_Hassan_CV.pdf',
-    cvDocxUrl: '/assets/Ramadan_Mohamed_CV.docx',
     photoUrl: '/assets/my-photo.jpg',
     fallbackPhotoUrl: '/assets/profile-placeholder.svg',
   },
@@ -68,7 +67,7 @@ export const portfolioData = {
   specializations: ['AI Automation', 'LLM Applications', 'RAG Systems', 'AI Backend Services', 'Machine Learning', 'Computer Vision', 'API Integrations', 'Data Pipelines'],
   education: [{ school: 'New Mansoura University', program: 'B.Sc. Computer Science - Artificial Intelligence Program', date: 'Sep 2022 - Jun 2026', details: 'Recent graduate in Computer Science with a specialization in Artificial Intelligence.' }],
   experiences: [
-    { company: 'Rawi Digital Transformation & Services', role: 'AI & Machine Learning Engineer', arrangement: 'Full-Time, Remote', date: 'Jun 2026 - Present', bullets: ['Build AI automation solutions and LLM-based workflows using n8n, FastAPI, REST APIs, RAG, and vector databases to support digital transformation and internal business processes.', 'Develop backend AI services, reporting automations, API integrations, and data pipelines connecting business systems with machine learning and LLM capabilities.'], tags: ['AI Automation', 'n8n', 'FastAPI', 'RAG', 'Vector Databases'] },
+    { company: 'Rawi Digital Transformation & Services', role: 'AI & Machine Learning Engineer', arrangement: 'Full-Time, Remote', date: 'Jun 2026 - Nov 2026', bullets: ['Built AI automation solutions and LLM-based workflows using n8n, FastAPI, REST APIs, RAG, and vector databases to support digital transformation and internal business processes.', 'Developed backend AI services, reporting automations, API integrations, and data pipelines connecting business systems with machine learning and LLM capabilities.'], tags: ['AI Automation', 'n8n', 'FastAPI', 'RAG', 'Vector Databases'] },
     { company: 'Al Osrah Group - Healthcare & Medical Services', role: 'AI Engineer', arrangement: 'Part-Time, On-site', date: 'Jun 2026 - Jul 2026', bullets: ['Developed machine-learning models and internal automation tools for pharmacy, medical-distribution, and laboratory operations.', 'Applied OCR and LLM-assisted workflows to digitize records and support reporting, inventory analysis, and demand-pattern evaluation.'], tags: ['Healthcare AI', 'OCR', 'LLM Workflows', 'Inventory Analysis'] },
     { company: 'ReNile Company', role: 'Artificial Intelligence Engineer Intern', arrangement: 'On-site', date: 'Mar 2026 - May 2026', bullets: ['Contributed to deployment-oriented AI projects covering data preprocessing, model optimization, and practical machine-learning implementation.', 'Developed deployable AI components supporting solutions used by approximately 70% of ReNile\u2019s client base, based on internal company estimates.'], tags: ['Deployable AI', 'Model Optimization', 'Data Preprocessing'] },
   ],
