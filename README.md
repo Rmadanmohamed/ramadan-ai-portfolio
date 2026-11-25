@@ -1,6 +1,6 @@
 # Ramadan Mohamed Hassan - AI Portfolio
 
-Premium React, TypeScript, Tailwind CSS, Framer Motion, and React Three Fiber portfolio website generated from `Ramadan_Mohamed_CV.docx`.
+Premium React, TypeScript, Tailwind CSS, Framer Motion, and React Three Fiber portfolio website generated from `Ramadan_Mohamed_Hassan_CV.pdf`.
 
 Live portfolio: https://ramadan-ai-portfolio.vercel.app
 
@@ -48,7 +48,7 @@ src/
   main.tsx
 public/
   assets/
-    Ramadan_Mohamed_CV.docx
+    Ramadan_Mohamed_Hassan_CV.pdf
     profile-placeholder.svg
 ```
 
@@ -79,7 +79,7 @@ npm run preview
 ## Replace Photo and CV
 
 - Add your personal photo at `public/assets/my-photo.jpg`. The site is already wired to use this path in `src/data/portfolioData.ts`.
-- Replace the downloadable CV at `public/assets/Ramadan_Mohamed_CV.docx` when you update the CV.
+- Replace the downloadable CV at `public/assets/Ramadan_Mohamed_Hassan_CV.pdf` when you update the CV.
 - If you prefer a different photo filename, update `profile.photoUrl` in `src/data/portfolioData.ts`.
 - Update `profile.github`, `profile.linkedin`, and project links in `src/data/portfolioData.ts` and `src/data/projects.ts` when verified links change.
 
