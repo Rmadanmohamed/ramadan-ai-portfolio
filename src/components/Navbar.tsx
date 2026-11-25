@@ -19,6 +19,15 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isOpen]);
+
   return (
     <motion.header
       className={`site-nav ${isScrolled ? 'site-nav--scrolled' : ''}`}
@@ -49,8 +58,9 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
           className="icon-button nav-menu-button"
           type="button"
           onClick={() => setIsOpen((value) => !value)}
-          aria-label="Open menu"
+          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
           {isOpen ? <X size={18} /> : <Menu size={18} />}
         </button>
@@ -60,6 +70,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
         {isOpen ? (
           <motion.nav
             className="mobile-nav"
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}

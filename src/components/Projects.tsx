@@ -1,233 +1,133 @@
-import { useMemo, useState } from 'react';
-import {
-  ArrowUpRight,
-  Atom,
-  BrainCircuit,
-  BriefcaseBusiness,
-  Cpu,
-  ExternalLink,
-  FlaskConical,
-  GitBranch,
-  Leaf,
-  Microscope,
-  Search,
-  SlidersHorizontal,
-  Stethoscope,
-  Waypoints,
-} from 'lucide-react';
+import { useCallback, useMemo, useState } from 'react';
+import { ArrowUpRight, Atom, BrainCircuit, BriefcaseBusiness, Cpu, ExternalLink, FlaskConical, GitBranch, Leaf, Microscope, Search, SlidersHorizontal, Stethoscope, Waypoints } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
-import {
-  projectCategories,
-  projectSortOptions,
-  type Project,
-  type ProjectCategory,
-  type ProjectFilter,
-  type ProjectSort,
-} from '../data/projects';
+import { getVisibleProjects } from '../data/projectFilters';
+import { projectCategories, projectSortOptions, type Project, type ProjectCategory, type ProjectFilter, type ProjectSort } from '../data/projects';
 import { SectionHeader } from './SectionHeader';
 import { ProjectModal } from './ProjectModal';
 
 const categoryIcons: Record<ProjectCategory, typeof Stethoscope> = {
-  'Machine Learning': BrainCircuit,
-  'Data Science': Atom,
-  'Medical AI': Stethoscope,
-  'Computer Vision': Microscope,
-  'Smart Agriculture': Leaf,
-  'Robotics & IoT': Waypoints,
-  'Full Stack': BriefcaseBusiness,
-  Optimization: Cpu,
-  Research: FlaskConical,
+  'medical-ai': Stethoscope,
+  'smart-agriculture': Leaf,
+  'computer-vision': Microscope,
+  'machine-learning': BrainCircuit,
+  'deep-learning': BrainCircuit,
+  'data-science': Atom,
+  'robotics-iot': Waypoints,
+  optimization: Cpu,
+  'full-stack': BriefcaseBusiness,
+  research: FlaskConical,
 };
 
 export function Projects() {
-  const [activeCategory, setActiveCategory] = useState<ProjectFilter>('All');
+  const [activeCategory, setActiveCategory] = useState<ProjectFilter>('all');
   const [query, setQuery] = useState('');
   const [sortMode, setSortMode] = useState<ProjectSort>('featured');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const projects = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-
-    const filtered = portfolioData.projects.filter((project) => {
-      const categoryMatches =
-        activeCategory === 'All' || (activeCategory === 'Featured' ? project.featured : project.category === activeCategory);
-      const searchableText = [
-        project.title,
-        project.repo,
-        project.category,
-        project.level,
-        project.summary,
-        project.description,
-        project.technologies.join(' '),
-        project.models.join(' '),
-        project.aliases?.join(' '),
-      ]
-        .filter(Boolean)
-        .join(' ')
-        .toLowerCase();
-
-      return categoryMatches && (!normalizedQuery || searchableText.includes(normalizedQuery));
-    });
-
-    return [...filtered].sort((a, b) => {
-      if (sortMode === 'newest') {
-        return new Date(b.updatedAt ?? b.createdAt ?? '1970-01-01').getTime() - new Date(a.updatedAt ?? a.createdAt ?? '1970-01-01').getTime();
-      }
-
-      if (sortMode === 'aiHeavy') {
-        return Number(Boolean(b.aiHeavy)) - Number(Boolean(a.aiHeavy)) || Number(Boolean(b.featured)) - Number(Boolean(a.featured));
-      }
-
-      if (sortMode === 'webApps') {
-        return Number(Boolean(b.webApp)) - Number(Boolean(a.webApp)) || Number(Boolean(b.featured)) - Number(Boolean(a.featured));
-      }
-
-      return Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || a.title.localeCompare(b.title);
-    });
-  }, [activeCategory, query, sortMode]);
+  const closeProject = useCallback(() => setSelectedProject(null), []);
+  const projects = useMemo(
+    () => getVisibleProjects({ projects: portfolioData.projects, category: activeCategory, query, sort: sortMode }),
+    [activeCategory, query, sortMode],
+  );
+  const selectedCategory = projectCategories.find(({ id }) => id === activeCategory);
 
   return (
-    <section id="projects" className="section-shell">
+    <section id="projects" className="section-shell project-section">
       <SectionHeader
-        eyebrow="Projects Portfolio"
-        title="A recruiter-ready map of applied AI, data, and product work."
-        description="Search, filter, and open each project as a mini case study with honest metrics, datasets, models, repository links, and demo links when available."
+        eyebrow="Selected Work · 21 projects"
+        title="Projects at the intersection of models, data, and useful software."
+        description="Explore applied AI, scientific work, and shipped interfaces. Each project appears once and can be discovered through every relevant technical or domain lens."
       />
 
       <div className="project-toolbar">
         <label className="project-search">
-          <Search size={18} />
+          <Search size={18} aria-hidden="true" />
           <span className="sr-only">Search projects</span>
-          <input
-            type="search"
-            placeholder="Search projects, models, tech..."
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
+          <input type="search" placeholder="Search projects, methods, or tools" value={query} onChange={(event) => setQuery(event.target.value)} />
         </label>
-
         <label className="project-sort">
-          <SlidersHorizontal size={18} />
+          <SlidersHorizontal size={18} aria-hidden="true" />
           <span className="sr-only">Sort projects</span>
           <select value={sortMode} onChange={(event) => setSortMode(event.target.value as ProjectSort)}>
-            {projectSortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+            {projectSortOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
           </select>
         </label>
       </div>
 
-      <div className="filter-bar" aria-label="Project category filters">
-        {projectCategories.map((category) => (
-          <button
-            key={category}
-            className={activeCategory === category ? 'active' : ''}
-            type="button"
-            onClick={() => setActiveCategory(category)}
-          >
-            {category}
+      <div className="filter-bar" role="group" aria-label="Filter projects by category">
+        {projectCategories.map(({ id, label }) => (
+          <button key={id} className={activeCategory === id ? 'active' : ''} type="button" aria-pressed={activeCategory === id} onClick={() => setActiveCategory(id)}>
+            {label}
           </button>
         ))}
       </div>
 
-      <div className="project-results-summary">
-        <Atom size={16} />
-        <span>
-          Showing {projects.length} of {portfolioData.projects.length} projects
-        </span>
+      <div className="project-results-summary" aria-live="polite" aria-atomic="true">
+        <Atom size={16} aria-hidden="true" />
+        <span><strong>{projects.length}</strong> {projects.length === 1 ? 'project' : 'projects'}{selectedCategory?.id !== 'all' ? ` in ${selectedCategory?.label}` : ''}{query.trim() ? ' matching your search' : ''}</span>
+        <span className="results-total">of {portfolioData.projects.length}</span>
       </div>
 
-      <motion.div className="projects-grid" layout>
-        {projects.map((project, index) => {
-          const Icon = categoryIcons[project.category];
-          return (
-            <motion.article
-              className="project-card glass-panel"
-              key={project.id}
-              layout
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.45, delay: index * 0.03 }}
-              whileHover={{ y: -8 }}
-              onClick={() => setSelectedProject(project)}
-              tabIndex={0}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault();
-                  setSelectedProject(project);
-                }
-              }}
-            >
-              <div className="project-card-top">
-                <div className="project-icon">
-                  <Icon size={22} />
+      {projects.length ? (
+        <motion.div className="projects-grid" layout>
+          {projects.map((project, index) => {
+            const Icon = categoryIcons[project.primaryCategory];
+            const primary = projectCategories.find(({ id }) => id === project.primaryCategory)?.label ?? 'Project';
+            return (
+              <motion.article
+                className={`project-card ${project.id === 'brain-tumor-mri-ai-system' ? 'project-card--spotlight' : ''}`}
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: Math.min(index * 0.025, 0.2) }}
+              >
+                <div className="project-card-top">
+                  <span className="project-icon"><Icon size={20} aria-hidden="true" /></span>
+                  <div className="project-card-meta"><span>{primary}</span><strong>{project.level}</strong></div>
+                  {project.featured ? <span className="featured-label">Selected</span> : null}
                 </div>
-                <div>
-                  <span>{project.category}</span>
-                  <strong>{project.level}</strong>
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+
+                <div className="project-taxonomy" aria-label="Project categories">
+                  {project.categories.filter((category) => category !== project.primaryCategory).slice(0, 3).map((category) => (
+                    <span key={category}>{projectCategories.find(({ id }) => id === category)?.label}</span>
+                  ))}
+                  {project.categories.length > 4 ? <span>+{project.categories.length - 4}</span> : null}
                 </div>
-              </div>
 
-              <h3>{project.title}</h3>
-              <p>{project.summary}</p>
+                <div className="tag-row project-tech-tags">
+                  {project.technologies.slice(0, 4).map((technology) => <span key={technology}>{technology}</span>)}
+                </div>
+                <div className="project-actions">
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-action">
+                    <GitBranch size={15} aria-hidden="true" /> Repository
+                  </a>
+                  <button type="button" className="project-open" onClick={() => setSelectedProject(project)}>
+                    Case study <ArrowUpRight size={16} aria-hidden="true" />
+                  </button>
+                </div>
+                {project.liveDemoUrl ? (
+                  <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="project-live">
+                    <ExternalLink size={15} aria-hidden="true" /> Live Demo
+                  </a>
+                ) : null}
+              </motion.article>
+            );
+          })}
+        </motion.div>
+      ) : (
+        <div className="project-empty" role="status">
+          <Search size={22} aria-hidden="true" />
+          <h3>No projects match this view</h3>
+          <p>Try another category or broaden the search terms.</p>
+          <button type="button" onClick={() => { setQuery(''); setActiveCategory('all'); }}>Clear filters <ArrowUpRight size={15} /></button>
+        </div>
+      )}
 
-              <div className="project-metrics">
-                <strong>{project.featured ? 'Featured' : project.aiHeavy ? 'AI-heavy' : project.webApp ? 'Web app' : 'Case study'}</strong>
-                <strong>{project.results[0] === 'Not specified' ? 'Metrics not specified' : 'Results noted'}</strong>
-              </div>
-
-              <div className="tag-row">
-                {project.technologies.slice(0, 4).map((technology) => (
-                  <span key={technology}>{technology}</span>
-                ))}
-              </div>
-
-              <div className="project-actions">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="project-action"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <GitBranch size={16} />
-                  GitHub
-                </a>
-                <button
-                  type="button"
-                  className="project-open"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    setSelectedProject(project);
-                  }}
-                >
-                  View Details
-                  <ArrowUpRight size={16} />
-                </button>
-              </div>
-
-              {project.liveDemoUrl ? (
-                <a
-                  href={project.liveDemoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="project-live"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <ExternalLink size={15} />
-                  Live demo
-                </a>
-              ) : null}
-            </motion.article>
-          );
-        })}
-      </motion.div>
-
-      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      <ProjectModal project={selectedProject} onClose={closeProject} />
     </section>
   );
 }

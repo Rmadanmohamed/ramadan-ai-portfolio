@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { About } from './components/About';
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { Awards } from './components/Awards';
@@ -8,28 +9,21 @@ import { Education } from './components/Education';
 import { Experience } from './components/Experience';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
-import { LoadingScreen } from './components/LoadingScreen';
 import { Navbar } from './components/Navbar';
 import { Projects } from './components/Projects';
 import { Research } from './components/Research';
 import { Skills } from './components/Skills';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setIsLoading(false), 1150);
-    return () => window.clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <>
-      <LoadingScreen isLoading={isLoading} />
       <AnimatedBackground />
       <Navbar theme={theme} onToggleTheme={() => setTheme((value) => (value === 'dark' ? 'light' : 'dark'))} />
       <main>
@@ -46,6 +40,7 @@ function App() {
       </main>
       <Footer />
     </>
+    </MotionConfig>
   );
 }
 

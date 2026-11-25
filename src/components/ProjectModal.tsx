@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Activity, ArrowUpRight, CheckCircle2, Cpu, ExternalLink, GitBranch, Layers3, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Project } from '../data/portfolioData';
+import { projectCategories, type Project } from '../data/projects';
 
 type ProjectModalProps = {
   project: Project | null;
@@ -10,18 +10,35 @@ type ProjectModalProps = {
 };
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const dialogRef = useRef<HTMLElement | null>(null);
   useEffect(() => {
     if (!project) return;
+    const previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
+      if (event.key === 'Tab') {
+        const focusable = dialogRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        if (!focusable?.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', onKeyDown);
+    requestAnimationFrame(() => dialogRef.current?.querySelector<HTMLElement>('.modal-close')?.focus());
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKeyDown);
+      previouslyFocused?.focus();
     };
   }, [onClose, project]);
 
@@ -37,6 +54,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         >
           <motion.article
             className="project-modal glass-panel"
+            ref={dialogRef}
             initial={{ opacity: 0, y: 36, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.98 }}
@@ -61,9 +79,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               <div className="project-modal-body">
-                <span className="section-eyebrow">{project.category}</span>
+                <span className="section-eyebrow">{projectCategories.find(({ id }) => id === project.primaryCategory)?.label}</span>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
+                <div className="project-taxonomy project-modal-taxonomy" aria-label="Project categories">
+                  {project.categories.map((category) => <span key={category}>{projectCategories.find(({ id }) => id === category)?.label}</span>)}
+                </div>
 
                 <div className="modal-actions">
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="modal-link modal-link--primary">

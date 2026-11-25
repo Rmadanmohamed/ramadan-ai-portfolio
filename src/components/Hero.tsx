@@ -1,196 +1,74 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowDown, Code2, Download, ExternalLink, Mail, Sparkles } from 'lucide-react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { ArrowDown, ArrowUpRight, Braces, Download, GitBranch, Mail, Network, ScanEye, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
-import * as THREE from 'three';
+import { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import { MagneticButton } from './MagneticButton';
 
-function useTyping(words: string[]) {
-  const [wordIndex, setWordIndex] = useState(0);
-  const [visible, setVisible] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const current = words[wordIndex];
-    const timeout = window.setTimeout(
-      () => {
-        if (!isDeleting && visible.length < current.length) {
-          setVisible(current.slice(0, visible.length + 1));
-          return;
-        }
-
-        if (!isDeleting && visible.length === current.length) {
-          setIsDeleting(true);
-          return;
-        }
-
-        if (isDeleting && visible.length > 0) {
-          setVisible(current.slice(0, visible.length - 1));
-          return;
-        }
-
-        setIsDeleting(false);
-        setWordIndex((index) => (index + 1) % words.length);
-      },
-      isDeleting ? 45 : 82,
-    );
-
-    return () => window.clearTimeout(timeout);
-  }, [isDeleting, visible, wordIndex, words]);
-
-  return visible;
-}
-
-function seededUnit(index: number) {
-  const value = Math.sin(index * 9301 + 49297) * 233280;
-  return value - Math.floor(value);
-}
-
-function AICore() {
-  const groupRef = useRef<THREE.Group>(null);
-  const points = useMemo(() => {
-    const vertices: number[] = [];
-    for (let i = 0; i < 240; i += 1) {
-      const phi = Math.acos(2 * seededUnit(i + 1) - 1);
-      const theta = seededUnit(i + 241) * Math.PI * 2;
-      const radius = 1.65 + seededUnit(i + 481) * 0.35;
-      vertices.push(
-        radius * Math.sin(phi) * Math.cos(theta),
-        radius * Math.sin(phi) * Math.sin(theta),
-        radius * Math.cos(phi),
-      );
-    }
-    return new Float32Array(vertices);
-  }, []);
-
-  useFrame(({ clock }) => {
-    if (!groupRef.current) return;
-    groupRef.current.rotation.y = clock.elapsedTime * 0.25;
-    groupRef.current.rotation.x = Math.sin(clock.elapsedTime * 0.35) * 0.12;
-  });
-
+function ModelDiagram() {
   return (
-    <group ref={groupRef}>
-      <mesh>
-        <icosahedronGeometry args={[1.05, 2]} />
-        <meshStandardMaterial
-          color="#22d3ee"
-          emissive="#0891b2"
-          emissiveIntensity={0.45}
-          metalness={0.76}
-          roughness={0.28}
-          wireframe
-        />
-      </mesh>
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.55, 0.012, 16, 160]} />
-        <meshBasicMaterial color="#a855f7" transparent opacity={0.78} />
-      </mesh>
-      <mesh rotation={[0.35, 0.85, 0]}>
-        <torusGeometry args={[1.85, 0.01, 16, 180]} />
-        <meshBasicMaterial color="#38bdf8" transparent opacity={0.62} />
-      </mesh>
-      <points>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" args={[points, 3]} />
-        </bufferGeometry>
-        <pointsMaterial color="#e0f2fe" size={0.018} transparent opacity={0.86} />
-      </points>
-    </group>
+    <div className="model-diagram" aria-label="Illustration of a connected AI engineering workflow">
+      <svg className="model-diagram-lines" viewBox="0 0 560 500" role="img" aria-labelledby="diagram-title">
+        <title id="diagram-title">AI systems workflow illustration</title>
+        <defs>
+          <pattern id="diagram-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M24 0H0V24" fill="none" stroke="currentColor" strokeWidth=".6" opacity=".14" />
+          </pattern>
+        </defs>
+        <rect x="25" y="22" width="510" height="456" rx="18" fill="url(#diagram-grid)" />
+        <path className="diagram-path diagram-path--one" d="M142 130 C215 130 210 220 280 220 S350 310 418 310" />
+        <path className="diagram-path diagram-path--two" d="M140 350 C205 350 215 275 280 275 S355 160 420 160" />
+        <path className="diagram-path diagram-path--three" d="M280 95V400" />
+        <circle cx="140" cy="130" r="6" /><circle cx="140" cy="350" r="6" />
+        <circle cx="280" cy="95" r="6" /><circle cx="280" cy="400" r="6" />
+        <circle cx="420" cy="160" r="6" /><circle cx="420" cy="310" r="6" />
+      </svg>
+      <div className="diagram-node diagram-node--vision"><ScanEye size={19} /><span>Computer vision</span><small>Image signals</small></div>
+      <div className="diagram-node diagram-node--core"><Network size={22} /><span>AI systems</span><small>Models · APIs · data</small></div>
+      <div className="diagram-node diagram-node--automation"><Braces size={19} /><span>Automation</span><small>Reliable workflows</small></div>
+      <div className="diagram-index"><span>FIELD NOTE</span><strong>01 / 03</strong></div>
+      <div className="diagram-coordinate">MODEL → SERVICE<br />DATA → DECISION</div>
+    </div>
   );
 }
 
 export function Hero() {
-  const { profile, stats } = portfolioData;
-  const typedRole = useTyping(profile.roles);
+  const { profile, stats, specializations } = portfolioData;
   const [photoSrc, setPhotoSrc] = useState(profile.photoUrl);
 
   return (
     <section id="hero" className="hero-section section-shell">
       <div className="hero-grid">
-        <motion.div
-          className="hero-copy"
-          initial={{ opacity: 0, y: 32 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut', delay: 0.2 }}
-        >
-          <span className="hero-kicker">
-            <Sparkles size={16} />
-            Production-oriented AI engineer and published researcher
-          </span>
-          <h1>
-            {profile.name}
-            <span>{typedRole}</span>
-          </h1>
+        <motion.div className="hero-copy" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}>
+          <span className="hero-kicker"><Sparkles size={15} aria-hidden="true" /> AI ENGINEERING · RESEARCH · PRODUCT</span>
+          <p className="hero-overline">Portfolio / 2026</p>
+          <h1>{profile.name}<span>Building AI that works in the real world.</span></h1>
           <p className="hero-title">{profile.title}</p>
           <p className="hero-summary">{profile.headline}</p>
           <p className="hero-support">{profile.summary}</p>
 
           <div className="hero-actions">
-            <MagneticButton href="#projects" icon={<ArrowDown size={18} />}>
-              View Projects
-            </MagneticButton>
-            <MagneticButton href={profile.cvUrl} download icon={<Download size={18} />} variant="secondary">
-              Download CV
-            </MagneticButton>
-            <MagneticButton href={profile.github} target="_blank" rel="noopener noreferrer" icon={<Code2 size={18} />} variant="ghost">
-              GitHub
-            </MagneticButton>
-            <MagneticButton href={profile.linkedin} target="_blank" rel="noopener noreferrer" icon={<ExternalLink size={18} />} variant="ghost">
-              LinkedIn
-            </MagneticButton>
-            <MagneticButton href="#contact" icon={<Mail size={18} />} variant="ghost">
-              Contact Me
-            </MagneticButton>
+            <MagneticButton href="#projects" icon={<ArrowDown size={17} />}>Explore selected work</MagneticButton>
+            <MagneticButton href={profile.cvUrl} download icon={<Download size={17} />} variant="secondary">Download CV</MagneticButton>
+            <MagneticButton href={profile.github} target="_blank" rel="noopener noreferrer" icon={<GitBranch size={17} />} variant="ghost">GitHub</MagneticButton>
+            <MagneticButton href="#contact" icon={<Mail size={17} />} variant="ghost">Get in touch</MagneticButton>
+          </div>
+          <div className="hero-specializations" aria-label="Areas of work">
+            {specializations.slice(0, 5).map((specialization) => <span key={specialization}>{specialization}</span>)}
           </div>
         </motion.div>
 
-        <motion.div
-          className="hero-visual"
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.35 }}
-        >
-          <div className="ai-core-card" aria-hidden="true">
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-              <ambientLight intensity={0.8} />
-              <pointLight position={[3, 3, 3]} intensity={2} color="#7dd3fc" />
-              <pointLight position={[-3, -2, 2]} intensity={1.5} color="#c084fc" />
-              <AICore />
-            </Canvas>
+        <motion.div className="hero-visual" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}>
+          <ModelDiagram />
+          <div className="profile-card">
+            <div className="profile-frame"><img src={photoSrc} alt="Ramadan Mohamed Hassan" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} /></div>
+            <div><span>Currently focused on</span><strong>Applied AI systems</strong><p>LLMs, RAG, automation, machine learning, and computer vision.</p></div>
+            <ArrowUpRight className="profile-arrow" size={17} aria-hidden="true" />
           </div>
-
-          <motion.div className="profile-card" whileHover={{ rotateX: 4, rotateY: -5, y: -6 }}>
-            <div className="profile-frame">
-              <img
-                src={photoSrc}
-                alt="Ramadan Mohamed Hassan"
-                onError={() => setPhotoSrc(profile.fallbackPhotoUrl)}
-              />
-            </div>
-            <div>
-              <span>Quick Profile</span>
-              <strong>AI Systems & Automation</strong>
-              <p>LLM applications, RAG, FastAPI, n8n, machine learning, and computer vision.</p>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
 
-      <motion.div
-        className="stats-strip"
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.65 }}
-      >
-        {stats.map((stat) => (
-          <div key={stat.label} className="stat-card">
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-            <p>{stat.detail}</p>
-          </div>
-        ))}
+      <motion.div className="stats-strip" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.42 }}>
+        {stats.map((stat, index) => <div key={stat.label} className="stat-card"><span className="stat-index">0{index + 1}</span><strong>{stat.value}</strong><span>{stat.label}</span><p>{stat.detail}</p></div>)}
       </motion.div>
     </section>
   );

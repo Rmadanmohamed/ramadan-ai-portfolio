@@ -1,15 +1,22 @@
-export type ProjectCategory =
-  | 'Medical AI'
-  | 'Smart Agriculture'
-  | 'Computer Vision'
-  | 'Machine Learning'
-  | 'Data Science'
-  | 'Robotics & IoT'
-  | 'Optimization'
-  | 'Full Stack'
-  | 'Research';
+export const projectCategories = [
+  { id: 'all', label: 'All projects' },
+  { id: 'featured', label: 'Featured' },
+  { id: 'medical-ai', label: 'Medical AI' },
+  { id: 'computer-vision', label: 'Computer Vision' },
+  { id: 'machine-learning', label: 'Machine Learning' },
+  { id: 'deep-learning', label: 'Deep Learning' },
+  { id: 'data-science', label: 'Data Science' },
+  { id: 'smart-agriculture', label: 'Smart Agriculture' },
+  { id: 'robotics-iot', label: 'Robotics & IoT' },
+  { id: 'optimization', label: 'Optimization' },
+  { id: 'full-stack', label: 'Full Stack' },
+  { id: 'research', label: 'Research' },
+] as const;
 
-export type ProjectFilter = ProjectCategory | 'All' | 'Featured';
+export type ProjectCategoryId = (typeof projectCategories)[number]['id'];
+export type ProjectCategory = Exclude<ProjectCategoryId, 'all' | 'featured'>;
+export type ProjectFilter = 'all' | 'featured' | ProjectCategory;
+export type ProjectCategoryDefinition = (typeof projectCategories)[number];
 
 export type ProjectSort = 'featured' | 'newest' | 'aiHeavy' | 'webApps';
 
@@ -22,7 +29,8 @@ export type Project = {
   id: string;
   repo: string;
   title: string;
-  category: ProjectCategory;
+  primaryCategory: ProjectCategory;
+  categories: ProjectCategory[];
   level: 'Foundational' | 'Intermediate' | 'Advanced' | 'Capstone' | 'Research';
   featured?: boolean;
   aiHeavy?: boolean;
@@ -47,20 +55,6 @@ export type Project = {
   notes?: string[];
 };
 
-export const projectCategories: ProjectFilter[] = [
-  'All',
-  'Featured',
-  'Medical AI',
-  'Smart Agriculture',
-  'Computer Vision',
-  'Machine Learning',
-  'Data Science',
-  'Robotics & IoT',
-  'Optimization',
-  'Full Stack',
-  'Research',
-];
-
 export const projectSortOptions: Array<{ value: ProjectSort; label: string }> = [
   { value: 'featured', label: 'Featured first' },
   { value: 'newest', label: 'Newest' },
@@ -73,7 +67,8 @@ export const projects: Project[] = [
     id: 'agrinova',
     repo: 'agrinova-smart-agriculture-dashboard',
     title: 'AgriNova',
-    category: 'Smart Agriculture',
+    primaryCategory: 'smart-agriculture',
+    categories: ['smart-agriculture', 'computer-vision', 'machine-learning', 'deep-learning', 'data-science', 'robotics-iot'],
     level: 'Capstone',
     featured: true,
     aiHeavy: true,
@@ -165,7 +160,8 @@ export const projects: Project[] = [
     id: 'brain-tumor-mri-ai-system',
     repo: 'brain-tumor-mri-ai-system',
     title: 'Brain Tumor MRI AI System',
-    category: 'Medical AI',
+    primaryCategory: 'medical-ai',
+    categories: ['medical-ai', 'computer-vision', 'machine-learning', 'deep-learning'],
     level: 'Advanced',
     featured: true,
     aiHeavy: true,
@@ -184,16 +180,17 @@ export const projects: Project[] = [
     architecture: 'Notebook-led model training, saved model artifact, API prototype, and lightweight UI experiments.',
     skills: ['Medical imaging', 'Transfer learning', 'API inference', 'Segmentation experimentation', 'Model evaluation'],
     githubUrl: 'https://github.com/Rmadanmohamed/brain-tumor-mri-ai-system',
+    liveDemoUrl: 'https://rmadanmohamed.github.io/brain-tumor-mri-ai-system/',
     notes: [
       'Educational and portfolio demonstration only. This is not a medical diagnosis tool and must not be used for clinical decisions.',
-      'Live deployment will be added only after the model and demo app are tested successfully.',
     ],
   },
   {
     id: 'medscan-ai-medical-diagnosis-platform',
     repo: 'medscan-ai-medical-diagnosis-platform',
     title: 'MedScan AI Medical Diagnosis Platform',
-    category: 'Medical AI',
+    primaryCategory: 'medical-ai',
+    categories: ['medical-ai', 'computer-vision', 'machine-learning', 'deep-learning'],
     level: 'Advanced',
     featured: true,
     aiHeavy: true,
@@ -205,8 +202,8 @@ export const projects: Project[] = [
     problem:
       'Medical screening workflows need accessible prototypes that combine image analysis and tabular risk signals in one interface.',
     features: ['Streamlit interactive app', 'Medical image analyzer', 'Retinal analyzer', 'Disease-risk prediction module'],
-    technologies: ['Python', 'Streamlit', 'TensorFlow', 'OpenCV', 'Scikit-learn', 'Plotly'],
-    models: ['CNN-style image models', 'Retinal analysis model', 'Classical ML risk models'],
+    technologies: ['Python', 'Streamlit', 'Pandas', 'NumPy', 'Scikit-learn', 'OpenCV', 'Pillow', 'Plotly'],
+    models: ['Random Forest image-analysis baseline', 'Gradient Boosting retinal-risk models', 'MLPClassifier and tree-based disease-risk prototypes'],
     dataset: 'No dataset files were bundled outside the source code.',
     results: ['No independently verified final metric was detected in executable source during the portfolio scan.'],
     architecture: 'Streamlit app with separate analyzer modules and a requirements-based Python environment.',
@@ -221,7 +218,8 @@ export const projects: Project[] = [
     id: 'breast-cancer-classification-ml',
     repo: 'breast-cancer-classification-ml',
     title: 'Breast Cancer Classification System',
-    category: 'Medical AI',
+    primaryCategory: 'medical-ai',
+    categories: ['medical-ai', 'machine-learning', 'data-science'],
     level: 'Intermediate',
     featured: true,
     aiHeavy: true,
@@ -245,7 +243,8 @@ export const projects: Project[] = [
     id: 'diabetes-prediction-ml',
     repo: 'diabetes-prediction-ml',
     title: 'Diabetes Prediction ML Pipeline',
-    category: 'Medical AI',
+    primaryCategory: 'medical-ai',
+    categories: ['medical-ai', 'machine-learning', 'data-science'],
     level: 'Intermediate',
     featured: true,
     aiHeavy: true,
@@ -269,7 +268,8 @@ export const projects: Project[] = [
     id: 'obesity-risk-prediction-ml',
     repo: 'obesity-risk-prediction-ml',
     title: 'Obesity Risk Prediction ML',
-    category: 'Medical AI',
+    primaryCategory: 'medical-ai',
+    categories: ['medical-ai', 'machine-learning', 'data-science'],
     level: 'Intermediate',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -290,7 +290,8 @@ export const projects: Project[] = [
     id: 'molecular-property-prediction-gnn',
     repo: 'molecular-property-prediction-gnn',
     title: 'Molecular Property Prediction with Graph Neural Networks',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'deep-learning', 'data-science', 'research'],
     level: 'Research',
     featured: true,
     aiHeavy: true,
@@ -314,7 +315,8 @@ export const projects: Project[] = [
     id: 'exoplanet-detection-ml',
     repo: 'exoplanet-detection-ml',
     title: 'Exoplanet Detection ML System',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'deep-learning', 'data-science', 'research'],
     level: 'Advanced',
     featured: true,
     aiHeavy: true,
@@ -338,7 +340,8 @@ export const projects: Project[] = [
     id: 'baby-food-ingredient-recommendation-ml',
     repo: 'baby-food-ingredient-recommendation-ml',
     title: 'AI Nutritional Recommendation System',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'deep-learning', 'data-science'],
     level: 'Advanced',
     featured: true,
     aiHeavy: true,
@@ -364,7 +367,8 @@ export const projects: Project[] = [
     id: 'retail-item-recommendation-system',
     repo: 'retail-item-recommendation-system',
     title: 'Retail Item Recommendation System',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'data-science'],
     level: 'Intermediate',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -386,7 +390,8 @@ export const projects: Project[] = [
     id: 'information-retrieval-recommender-systems',
     repo: 'information-retrieval-recommender-systems',
     title: 'Information Retrieval and Recommender Systems',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'data-science'],
     level: 'Intermediate',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -408,7 +413,8 @@ export const projects: Project[] = [
     id: 'knowledge-based-weather-recommendation-system',
     repo: 'knowledge-based-weather-recommendation-system',
     title: 'Knowledge-Based Weather Recommendation System',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'data-science'],
     level: 'Intermediate',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -430,7 +436,8 @@ export const projects: Project[] = [
     id: 'quantum-machine-learning-experiments',
     repo: 'quantum-machine-learning-experiments',
     title: 'Quantum Machine Learning Experiments',
-    category: 'Machine Learning',
+    primaryCategory: 'machine-learning',
+    categories: ['machine-learning', 'deep-learning', 'research'],
     level: 'Research',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -452,7 +459,8 @@ export const projects: Project[] = [
     id: 'backpack-price-prediction-ml',
     repo: 'backpack-price-prediction-ml',
     title: 'Backpack Price Prediction ML',
-    category: 'Data Science',
+    primaryCategory: 'data-science',
+    categories: ['machine-learning', 'data-science'],
     level: 'Foundational',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -473,7 +481,8 @@ export const projects: Project[] = [
     id: 'student-performance-analysis',
     repo: 'student-performance-analysis',
     title: 'Student Performance Analysis',
-    category: 'Data Science',
+    primaryCategory: 'data-science',
+    categories: ['machine-learning', 'data-science'],
     level: 'Foundational',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -494,7 +503,8 @@ export const projects: Project[] = [
     id: 'titanic-survival-prediction-ml',
     repo: 'titanic-survival-prediction-ml',
     title: 'Titanic Survival Prediction ML',
-    category: 'Data Science',
+    primaryCategory: 'data-science',
+    categories: ['machine-learning', 'data-science'],
     level: 'Foundational',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -515,7 +525,8 @@ export const projects: Project[] = [
     id: 'agglomerative-clustering-analysis',
     repo: 'agglomerative-clustering-analysis',
     title: 'Agglomerative Clustering Analysis',
-    category: 'Data Science',
+    primaryCategory: 'data-science',
+    categories: ['machine-learning', 'data-science'],
     level: 'Foundational',
     aiHeavy: true,
     createdAt: '2026-05-19',
@@ -536,7 +547,8 @@ export const projects: Project[] = [
     id: 'hybrid-optimization-algorithms',
     repo: 'hybrid-optimization-algorithms',
     title: 'Hybrid Optimization Algorithms',
-    category: 'Optimization',
+    primaryCategory: 'optimization',
+    categories: ['optimization', 'research'],
     level: 'Research',
     featured: true,
     aiHeavy: true,
@@ -560,7 +572,8 @@ export const projects: Project[] = [
     id: 'robotics-research-paper',
     repo: 'robotics-research-paper',
     title: 'Robotics Path Planning Research',
-    category: 'Research',
+    primaryCategory: 'research',
+    categories: ['robotics-iot', 'optimization', 'computer-vision', 'research'],
     level: 'Research',
     featured: true,
     createdAt: '2026-05-19',
@@ -583,7 +596,8 @@ export const projects: Project[] = [
     id: 'ai-learning-website',
     repo: 'ai-learning-website',
     title: 'AI Learning Website',
-    category: 'Full Stack',
+    primaryCategory: 'full-stack',
+    categories: ['full-stack'],
     level: 'Intermediate',
     webApp: true,
     createdAt: '2026-05-19',
@@ -606,7 +620,8 @@ export const projects: Project[] = [
     id: 'finlit-egypt-financial-literacy-platform',
     repo: 'finlit-egypt-financial-literacy-platform',
     title: 'FinLit Egypt Financial Literacy Platform',
-    category: 'Full Stack',
+    primaryCategory: 'full-stack',
+    categories: ['full-stack'],
     level: 'Advanced',
     featured: true,
     webApp: true,
