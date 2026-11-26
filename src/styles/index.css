@@ -509,25 +509,6 @@ html[data-theme="light"] .mobile-nav {
   overflow: hidden;
 }
 
-.profile-card {
-  position: absolute;
-  left: 4%;
-  bottom: 0;
-  width: min(88%, 420px);
-  display: grid;
-  grid-template-columns: 116px 1fr;
-  gap: 18px;
-  align-items: center;
-  padding: 18px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
-  background: var(--panel-strong);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
-  transform-style: preserve-3d;
-}
-
-.profile-frame,
 .contact-avatar {
   position: relative;
   overflow: hidden;
@@ -536,12 +517,6 @@ html[data-theme="light"] .mobile-nav {
   box-shadow: 0 0 34px rgba(34, 211, 238, 0.32);
 }
 
-.profile-frame {
-  width: 116px;
-  height: 116px;
-}
-
-.profile-frame img,
 .contact-avatar img,
 .about-profile img {
   width: 100%;
@@ -550,7 +525,6 @@ html[data-theme="light"] .mobile-nav {
   display: block;
 }
 
-.profile-card span,
 .about-profile span {
   color: var(--cyan);
   font-size: 0.8rem;
@@ -558,14 +532,12 @@ html[data-theme="light"] .mobile-nav {
   text-transform: uppercase;
 }
 
-.profile-card strong,
 .about-profile strong {
   display: block;
   margin: 5px 0 6px;
   font-size: 1.05rem;
 }
 
-.profile-card p,
 .about-profile p {
   margin: 0;
   color: var(--muted);
@@ -1887,17 +1859,6 @@ html[data-theme="light"] .project-sort select {
     height: 360px;
   }
 
-  .profile-card {
-    left: 0;
-    width: 100%;
-    grid-template-columns: 92px 1fr;
-  }
-
-  .profile-frame {
-    width: 92px;
-    height: 92px;
-  }
-
   .stats-strip,
   .specialization-grid,
   .projects-grid,
@@ -1999,10 +1960,6 @@ html[data-theme="light"] .project-sort select {
 
   .hero-visual {
     min-height: 470px;
-  }
-
-  .profile-card {
-    grid-template-columns: 1fr;
   }
 
   .courses-layout {
@@ -2131,8 +2088,8 @@ main { z-index: 1; }
 .button-icon { color: inherit; }
 .hero-specializations { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 25px; }
 .hero-specializations span, .project-taxonomy span { padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: .69rem; line-height: 1.25; }
-.hero-visual { min-height: 500px; position: relative; display: grid; align-items: center; }
-.model-diagram { position: relative; width: 100%; max-width: 510px; min-height: 430px; justify-self: end; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.hero-visual { min-height: 0; position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 24px; }
+.model-diagram { position: relative; width: 100%; max-width: 620px; min-height: 430px; align-self: flex-end; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
 .model-diagram-lines { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--line); }
 .model-diagram-lines circle { fill: var(--cyan); stroke: var(--panel); stroke-width: 5px; }
 .diagram-path { fill: none; stroke: var(--line-strong); stroke-width: 1.2px; stroke-dasharray: 4 7; animation: diagram-flow 18s linear infinite; }
@@ -2144,10 +2101,15 @@ main { z-index: 1; }
 .diagram-index, .diagram-coordinate { position: absolute; color: var(--muted); font: 500 .63rem/1.6 "Geist Mono", monospace; letter-spacing: .07em; }
 .diagram-index { top: 18px; right: 20px; display: grid; gap: 5px; text-align: right; }.diagram-index strong { color: var(--text); font-weight: 550; }
 .diagram-coordinate { bottom: 18px; left: 20px; }
-.profile-card { position: absolute; z-index: 2; left: -25px; bottom: 18px; width: min(390px, 88%); display: grid; grid-template-columns: 58px 1fr 18px; align-items: center; gap: 13px; padding: 13px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel-strong); box-shadow: var(--shadow); }
-.profile-frame { width: 58px; height: 58px; border: 1px solid var(--line-strong); border-radius: 8px; box-shadow: none; }.profile-frame img { width: 100%; height: 100%; display: block; object-fit: cover; }
-.profile-card span { color: var(--muted); font: 500 .63rem/1.4 "Geist Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
-.profile-card strong { display: block; margin: 4px 0 2px; font-size: .84rem; font-weight: 650; }.profile-card p { margin: 0; color: var(--muted); font-size: .7rem; line-height: 1.45; }.profile-arrow { color: var(--cyan); }
+.expertise-card { width: min(100%, 620px); align-self: flex-end; display: grid; grid-template-columns: clamp(140px, 13vw, 176px) minmax(0, 1fr); align-items: center; gap: 24px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel-strong); box-shadow: var(--shadow); transition: transform .5s var(--ease-out), border-color .3s var(--ease-out), box-shadow .3s var(--ease-out); }
+.expertise-card:hover { transform: translateY(-3px); border-color: var(--line-strong); box-shadow: 0 20px 52px rgba(0,0,0,.2); }
+.expertise-portrait { width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.expertise-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.expertise-copy { min-width: 0; display: grid; align-content: center; gap: 12px; }
+.expertise-label { display: flex; align-items: center; gap: 8px; color: var(--cyan); font: 600 .75rem/1.33 "Geist Mono", monospace; letter-spacing: .08em; }
+.expertise-label::before { content: ""; width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 4px color-mix(in srgb, var(--cyan) 14%, transparent); }
+.expertise-copy h2 { max-width: 14ch; margin: 0; color: var(--text); font-size: 1.5rem; line-height: 1.33; letter-spacing: -.045em; font-weight: 650; text-wrap: balance; }
+.expertise-copy p { max-width: 34ch; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
 .stats-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
 .stat-card, .glass-panel { border: 0; border-radius: 0; background: transparent; box-shadow: none; backdrop-filter: none; }
 .stat-card { position: relative; min-height: 112px; display: grid; grid-template-columns: 48px auto 1fr; grid-template-rows: 1fr 1fr; align-items: center; justify-content: initial; gap: 2px 16px; padding: 22px 26px; }
@@ -2164,7 +2126,7 @@ h3 { letter-spacing: -.035em; font-weight: 600; }
 .about-story p, .experience-card li, .research-card p, .contact-card p { color: var(--muted); font-size: .89rem; line-height: 1.75; }
 .about-story p { margin: 0 0 15px; }.about-story p:last-of-type { margin-bottom: 19px; }
 .signal-list span, .tag-row span, .project-metrics strong { border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; background: transparent; color: var(--muted); font-size: .7rem; font-weight: 550; }
-.about-profile { grid-template-columns: 94px 1fr; gap: 18px; }.about-profile img { width: 94px; height: 112px; border: 1px solid var(--line); border-radius: 9px; object-fit: cover; }.about-profile span, .profile-card span { color: var(--cyan); }.about-profile strong { font-size: .96rem; }.about-profile p { color: var(--muted); font-size: .82rem; line-height: 1.6; }
+.about-profile { grid-template-columns: 94px 1fr; gap: 18px; }.about-profile img { width: 94px; height: 112px; border: 1px solid var(--line); border-radius: 9px; object-fit: cover; }.about-profile span { color: var(--cyan); }.about-profile strong { font-size: .96rem; }.about-profile p { color: var(--muted); font-size: .82rem; line-height: 1.6; }
 .specialization-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }.specialization-card { min-height: 54px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); color: var(--soft); font-size: .78rem; font-weight: 550; }.specialization-card svg { color: var(--cyan); }
 .experience-layout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }.experience-rail { display: none; }.experience-card { display: flex; flex-direction: column; gap: 13px; }.experience-icon, .research-icon, .award-icon, .skill-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 9px; background: transparent; color: var(--cyan); }.experience-meta span { font-size: .66rem; }.experience-meta h3 { margin: 9px 0 3px; font-size: 1.06rem; }.experience-meta strong { font-size: .84rem; font-weight: 600; }.experience-arrangement { margin: 5px 0 0; color: var(--muted); font-size: .75rem; }.experience-card ul { display: grid; gap: 10px; margin: 0; padding-left: 18px; }.experience-card li { padding-left: 2px; font-size: .8rem; }.experience-card .tag-row { margin-top: auto; }
 
@@ -2196,7 +2158,7 @@ h3 { letter-spacing: -.035em; font-weight: 600; }
   .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
   .hero-copy h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
   .hero-copy h1 span { font-size: .52em; }
-  .hero-visual { min-height: 410px; }.model-diagram { min-height: 370px; justify-self: stretch; }.profile-card { left: 12px; bottom: 0; }
+  .hero-visual { min-height: 0; }.model-diagram { min-height: 370px; align-self: stretch; }
   .stats-strip { grid-template-columns: 1fr; }.stat-card { min-height: 86px; padding: 16px 20px; }.stat-card + .stat-card { border-top: 1px solid var(--line); border-left: 0; }
   .specialization-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .research-grid { grid-template-columns: 1fr; }
@@ -2207,7 +2169,7 @@ h3 { letter-spacing: -.035em; font-weight: 600; }
   .section-shell { width: calc(100% - 32px); padding: 66px 0; }.hero-section { padding-top: 106px; }
   .hero-kicker { font-size: .62rem; }.hero-copy h1 { font-size: clamp(2.45rem, 12vw, 3.3rem); }.hero-copy h1 span { font-size: .5em; line-height: 1.24; }.hero-title { font-size: .82rem; }.hero-summary { font-size: .96rem; }.hero-support { font-size: .82rem; }
   .hero-actions { display: grid; grid-template-columns: 1fr 1fr; }.hero-actions .magnetic-button { width: 100%; padding: 0 9px; font-size: .73rem; }.hero-specializations span { font-size: .62rem; }
-  .hero-visual { min-height: 355px; }.model-diagram { min-height: 320px; }.diagram-node { min-width: 127px; min-height: 70px; padding: 9px; column-gap: 6px; }.diagram-node--vision { left: 4%; }.diagram-node--core { left: 29%; min-width: 148px; min-height: 80px; }.diagram-node--automation { right: 3%; }.diagram-node span { font-size: .69rem; }.diagram-node small { font-size: .59rem; }.diagram-index { right: 12px; top: 12px; font-size: .55rem; }.diagram-coordinate { left: 12px; bottom: 12px; font-size: .55rem; }.profile-card { left: 8px; width: calc(100% - 16px); grid-template-columns: 48px 1fr 15px; gap: 10px; padding: 10px; }.profile-frame { width: 48px; height: 48px; }.profile-card p { font-size: .64rem; }
+  .hero-visual { min-height: 0; }.model-diagram { min-height: 320px; }.diagram-node { min-width: 127px; min-height: 70px; padding: 9px; column-gap: 6px; }.diagram-node--vision { left: 4%; }.diagram-node--core { left: 29%; min-width: 148px; min-height: 80px; }.diagram-node--automation { right: 3%; }.diagram-node span { font-size: .69rem; }.diagram-node small { font-size: .59rem; }.diagram-index { right: 12px; top: 12px; font-size: .55rem; }.diagram-coordinate { left: 12px; bottom: 12px; font-size: .55rem; }
   .section-header { margin-bottom: 27px; }.section-header h2 { font-size: clamp(1.85rem, 8vw, 2.5rem); }.section-header p { font-size: .84rem; }
   .about-story, .about-profile, .experience-card, .research-card, .skill-panel, .award-card, .certification-card, .languages-card, .contact-card, .contact-form, .timeline-content { padding: 17px; }
   .about-profile { grid-template-columns: 76px 1fr; }.about-profile img { width: 76px; height: 92px; }
@@ -2221,13 +2183,7 @@ h3 { letter-spacing: -.035em; font-weight: 600; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* Professional identity and portrait refinements */
-.profile-card { width: min(470px, 92%); grid-template-columns: 92px minmax(0, 1fr) 18px; gap: 15px; padding: 15px; }
-.profile-frame { width: 92px; height: 123px; overflow: hidden; border-radius: 8px; }
-.profile-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; transform: scale(1.48); }
-.profile-card-copy { min-width: 0; }
-.profile-card-copy strong { font-size: clamp(.92rem, 1.3vw, 1.12rem); line-height: 1.22; }
-.profile-card-copy p { max-width: 34ch; font-size: .72rem; line-height: 1.55; }
+/* Project icon and portrait refinements */
 .project-card-top .project-icon { display: grid; place-items: center; align-self: center; flex: 0 0 36px; line-height: 0; padding: 0; }
 .project-icon svg { display: block; width: 20px; height: 20px; flex: 0 0 20px; overflow: visible; }
 .project-more-tags { min-height: 26px; padding: 4px 7px; border: 1px solid var(--line-strong); border-radius: 6px; background: transparent; color: var(--cyan); font: 600 .62rem/1.25 "Geist Mono", monospace; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
@@ -2236,14 +2192,27 @@ h3 { letter-spacing: -.035em; font-weight: 600; }
 .contact-avatar { width: min(100%, 180px); height: auto; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 10px; }
 .contact-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 62% 40%; transform: scale(1.48); }
 .contact-card h3 { margin-top: 19px; }
+@media (max-width: 1080px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(290px, .8fr); }
+  .expertise-card { grid-template-columns: clamp(136px, 14vw, 160px) minmax(0, 1fr); gap: 16px; padding: 16px; }
+}
 @media (max-width: 780px) {
-  .profile-card { left: 12px; width: min(470px, calc(100% - 24px)); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-visual { width: min(100%, 700px); align-self: flex-end; gap: 20px; }
+  .model-diagram { min-height: 370px; }
+  .expertise-card { width: min(100%, 620px); grid-template-columns: clamp(150px, 23vw, 176px) minmax(0, 1fr); gap: 24px; padding: 24px; }
   .contact-avatar { width: min(100%, 172px); }
 }
 @media (max-width: 540px) {
-  .profile-card { left: 8px; width: calc(100% - 16px); grid-template-columns: 66px minmax(0, 1fr) 15px; gap: 10px; padding: 10px; }
-  .profile-frame { width: 66px; height: 88px; }
-  .profile-card-copy strong { font-size: .88rem; }
-  .profile-card-copy p { font-size: .63rem; line-height: 1.4; }
+  .hero-visual { gap: 16px; }
+  .model-diagram { min-height: 320px; }
+  .expertise-card { grid-template-columns: 104px minmax(0, 1fr); gap: 16px; padding: 16px; border-radius: 12px; }
+  .expertise-copy { gap: 10px; }
+  .expertise-copy h2 { font-size: 1.25rem; line-height: 1.4; }
+  .expertise-copy p { font-size: .875rem; line-height: 1.43; }
+  .expertise-label { font-size: .75rem; }
   .contact-avatar { width: min(100%, 158px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .expertise-card, .expertise-card:hover { transform: none; transition: none; }
 }

@@ -1,5 +1,5 @@
-import { ArrowDown, ArrowUpRight, Braces, Download, GitBranch, Mail, Network, ScanEye, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowDown, Braces, Download, GitBranch, Mail, Network, ScanEye, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
 import { MagneticButton } from './MagneticButton';
@@ -34,6 +34,11 @@ function ModelDiagram() {
 export function Hero() {
   const { profile, stats, specializations } = portfolioData;
   const [photoSrc, setPhotoSrc] = useState(profile.photoUrl);
+  const reduceMotion = useReducedMotion();
+  const reveal = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 12 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const } },
+  };
 
   return (
     <section id="hero" className="hero-section section-shell">
@@ -57,13 +62,24 @@ export function Hero() {
           </div>
         </motion.div>
 
-        <motion.div className="hero-visual" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}>
+        <motion.div className="hero-visual" initial={{ opacity: 0, y: reduceMotion ? 0 : 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}>
           <ModelDiagram />
-          <div className="profile-card">
-            <div className="profile-frame"><img src={photoSrc} alt="Portrait of Ramadan Mohamed Hassan" width="1200" height="1600" fetchPriority="high" decoding="async" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} /></div>
-            <div className="profile-card-copy"><span>AREAS OF EXPERTISE</span><strong>AI Systems &amp; AI Automation</strong><p>AI Solutions · LLMs · RAG · Automation · Machine Learning · Computer Vision</p></div>
-            <ArrowUpRight className="profile-arrow" size={17} aria-hidden="true" />
-          </div>
+          <motion.article
+            className="expertise-card"
+            aria-label="Areas of expertise"
+            initial="hidden"
+            animate="visible"
+            variants={{ hidden: { opacity: 1 }, visible: { opacity: 1, transition: { delayChildren: 0.32, staggerChildren: 0.12 } } }}
+          >
+            <motion.div className="expertise-portrait" variants={reveal}>
+              <img src={photoSrc} alt="Portrait of Ramadan Mohamed Hassan" width="1200" height="1600" fetchPriority="high" decoding="async" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} />
+            </motion.div>
+            <div className="expertise-copy">
+              <motion.span className="expertise-label" variants={reveal}>AREAS OF EXPERTISE</motion.span>
+              <motion.h2 variants={reveal}>AI Systems &amp; AI Automation</motion.h2>
+              <motion.p variants={reveal}>AI Solutions · LLMs · RAG · Automation · Machine Learning · Computer Vision</motion.p>
+            </div>
+          </motion.article>
         </motion.div>
       </div>
 
