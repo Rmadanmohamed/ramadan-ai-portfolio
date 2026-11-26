@@ -2220,3 +2220,30 @@ h3 { letter-spacing: -.035em; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Professional identity and portrait refinements */
+.profile-card { width: min(470px, 92%); grid-template-columns: 92px minmax(0, 1fr) 18px; gap: 15px; padding: 15px; }
+.profile-frame { width: 92px; height: 123px; overflow: hidden; border-radius: 8px; }
+.profile-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; transform: scale(1.48); }
+.profile-card-copy { min-width: 0; }
+.profile-card-copy strong { font-size: clamp(.92rem, 1.3vw, 1.12rem); line-height: 1.22; }
+.profile-card-copy p { max-width: 34ch; font-size: .72rem; line-height: 1.55; }
+.project-card-top .project-icon { display: grid; place-items: center; align-self: center; flex: 0 0 36px; line-height: 0; padding: 0; }
+.project-icon svg { display: block; width: 20px; height: 20px; flex: 0 0 20px; overflow: visible; }
+.project-more-tags { min-height: 26px; padding: 4px 7px; border: 1px solid var(--line-strong); border-radius: 6px; background: transparent; color: var(--cyan); font: 600 .62rem/1.25 "Geist Mono", monospace; cursor: pointer; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.project-more-tags:hover, .project-more-tags:focus-visible { border-color: var(--cyan); background: var(--cyan); color: #1b2114; }
+.contact-card { align-content: start; }
+.contact-avatar { width: min(100%, 180px); height: auto; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 10px; }
+.contact-avatar img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 62% 40%; transform: scale(1.48); }
+.contact-card h3 { margin-top: 19px; }
+@media (max-width: 780px) {
+  .profile-card { left: 12px; width: min(470px, calc(100% - 24px)); }
+  .contact-avatar { width: min(100%, 172px); }
+}
+@media (max-width: 540px) {
+  .profile-card { left: 8px; width: calc(100% - 16px); grid-template-columns: 66px minmax(0, 1fr) 15px; gap: 10px; padding: 10px; }
+  .profile-frame { width: 66px; height: 88px; }
+  .profile-card-copy strong { font-size: .88rem; }
+  .profile-card-copy p { font-size: .63rem; line-height: 1.4; }
+  .contact-avatar { width: min(100%, 158px); }
+}

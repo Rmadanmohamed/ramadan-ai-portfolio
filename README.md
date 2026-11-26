@@ -7,7 +7,8 @@ Live portfolio: https://ramadan-ai-portfolio.vercel.app
 Author links:
 
 - GitHub: https://github.com/Rmadanmohamed
-- LinkedIn: https://www.linkedin.com/in/ramadan-mohamed-657686365
+- LinkedIn: https://www.linkedin.com/in/ramadan-mohamed-89085a366/
+- Email: ramadanmohameddd3@gmail.com
 - Portfolio: https://ramadan-ai-portfolio.vercel.app
 
 ## Tech Stack

@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ArrowUpRight, Atom, BrainCircuit, BriefcaseBusiness, Cpu, ExternalLink, FlaskConical, GitBranch, Leaf, Microscope, Search, SlidersHorizontal, Stethoscope, Waypoints } from 'lucide-react';
+import { ArrowUpRight, Atom, BrainCircuit, BriefcaseBusiness, Cpu, ExternalLink, FlaskConical, GitBranch, Leaf, Microscope, MonitorSmartphone, Search, SlidersHorizontal, Stethoscope, Waypoints } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
 import { getVisibleProjects } from '../data/projectFilters';
@@ -17,6 +17,7 @@ const categoryIcons: Record<ProjectCategory, typeof Stethoscope> = {
   'robotics-iot': Waypoints,
   optimization: Cpu,
   'full-stack': BriefcaseBusiness,
+  frontend: MonitorSmartphone,
   research: FlaskConical,
 };
 
@@ -25,6 +26,7 @@ export function Projects() {
   const [query, setQuery] = useState('');
   const [sortMode, setSortMode] = useState<ProjectSort>('featured');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [expandedSkills, setExpandedSkills] = useState<Set<string>>(() => new Set());
   const closeProject = useCallback(() => setSelectedProject(null), []);
   const projects = useMemo(
     () => getVisibleProjects({ projects: portfolioData.projects, category: activeCategory, query, sort: sortMode }),
@@ -74,6 +76,10 @@ export function Projects() {
           {projects.map((project, index) => {
             const Icon = categoryIcons[project.primaryCategory];
             const primary = projectCategories.find(({ id }) => id === project.primaryCategory)?.label ?? 'Project';
+            const highlights = [...new Set([...project.technologies.slice(0, 3), ...project.skills])];
+            const expanded = expandedSkills.has(project.id);
+            const visibleHighlights = expanded ? highlights : highlights.slice(0, 4);
+            const remaining = highlights.length - visibleHighlights.length;
             return (
               <motion.article
                 className={`project-card ${project.id === 'brain-tumor-mri-ai-system' ? 'project-card--spotlight' : ''}`}
@@ -84,7 +90,7 @@ export function Projects() {
                 transition={{ duration: 0.35, delay: Math.min(index * 0.025, 0.2) }}
               >
                 <div className="project-card-top">
-                  <span className="project-icon"><Icon size={20} aria-hidden="true" /></span>
+                  <span className="project-icon"><Icon size={20} strokeWidth={1.8} aria-hidden="true" /></span>
                   <div className="project-card-meta"><span>{primary}</span><strong>{project.level}</strong></div>
                   {project.featured ? <span className="featured-label">Selected</span> : null}
                 </div>
@@ -98,8 +104,16 @@ export function Projects() {
                   {project.categories.length > 4 ? <span>+{project.categories.length - 4}</span> : null}
                 </div>
 
-                <div className="tag-row project-tech-tags">
-                  {project.technologies.slice(0, 4).map((technology) => <span key={technology}>{technology}</span>)}
+                <div className="tag-row project-tech-tags" aria-label="Key technologies and skills">
+                  {visibleHighlights.map((highlight) => <span key={highlight}>{highlight}</span>)}
+                  {remaining > 0 || expanded ? (
+                    <button type="button" className="project-more-tags" aria-expanded={expanded} onClick={() => setExpandedSkills((current) => {
+                      const next = new Set(current);
+                      if (next.has(project.id)) next.delete(project.id);
+                      else next.add(project.id);
+                      return next;
+                    })}>{expanded ? 'Show less' : `+${remaining} more`}</button>
+                  ) : null}
                 </div>
                 <div className="project-actions">
                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="project-action">

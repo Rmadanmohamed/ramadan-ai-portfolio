@@ -28,7 +28,7 @@ export function About() {
         >
           <p>{profile.summary}</p>
           <p>My work connects AI automation, LLM and RAG workflows, backend engineering, data pipelines, machine learning, and computer vision to build practical systems rather than isolated demonstrations.</p>
-          <p>I am positioned for AI Engineer, AI Automation Engineer, AI Systems Engineer, LLM Engineer, RAG Engineer, Machine Learning Engineer, and AI Backend Engineer roles.</p>
+          <p>My primary professional identity is AI Engineer, complemented by AI research experience and hands-on work delivering AI systems, automation, LLM and RAG workflows, machine learning, and computer vision solutions.</p>
           <div className="signal-list">
             <span>Production ML</span>
             <span>LLM & RAG Systems</span>

@@ -31,13 +31,13 @@ const certifications = [
 export const portfolioData = {
   profile: {
     name: 'Ramadan Mohamed Hassan',
-    title: 'AI Engineer | AI Automation | LLM & RAG Systems | Machine Learning',
-    roles: ['AI Engineer', 'AI Automation Engineer', 'LLM & RAG Engineer', 'AI Backend Engineer'],
-    headline: 'Building production-oriented AI systems, automation workflows, and deployable machine-learning services.',
-    summary: 'Recent B.Sc. Computer Science - Artificial Intelligence graduate experienced with FastAPI, n8n, APIs, LLM applications, RAG, machine learning, and computer vision. Co-author of research published by Elsevier and Springer, with award-winning AI projects.',
-    email: 'rm3176602@gmail.com',
+    title: 'AI Engineer | AI Researcher | AI Automation | LLM & RAG Systems | Machine Learning',
+    roles: ['AI Engineer', 'AI Researcher', 'AI Automation Engineer', 'LLM & RAG Engineer', 'AI Backend Engineer'],
+    headline: 'Designing, building, and integrating practical AI solutions, systems, and automation for real-world workflows.',
+    summary: 'Computer Science graduate in Artificial Intelligence with experience across AI solutions, automation, backend services, LLM and RAG systems, machine learning, and computer vision. Co-author of research published by Elsevier and Springer, with award-winning AI projects.',
+    email: 'ramadanmohameddd3@gmail.com',
     phone: '+201000319057',
-    linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-657686365',
+    linkedin: 'https://www.linkedin.com/in/ramadan-mohamed-89085a366/',
     github: 'https://github.com/Rmadanmohamed',
     portfolioUrl: 'https://ramadan-ai-portfolio.vercel.app/',
     cvUrl: '/assets/Ramadan_Mohamed_Hassan_CV.pdf',
@@ -64,7 +64,7 @@ export const portfolioData = {
       detail: 'NVIDIA, Huawei ICT Academy, and NTI',
     },
   ],
-  specializations: ['AI Automation', 'LLM Applications', 'RAG Systems', 'AI Backend Services', 'Machine Learning', 'Computer Vision', 'API Integrations', 'Data Pipelines'],
+  specializations: ['AI Solutions', 'AI Systems', 'AI Automation', 'LLM Applications', 'RAG Systems', 'Machine Learning', 'Deep Learning', 'Computer Vision', 'AI Integration', 'Applied AI'],
   education: [{ school: 'New Mansoura University', program: 'B.Sc. Computer Science - Artificial Intelligence Program', date: 'Sep 2022 - Jun 2026', details: 'Recent graduate in Computer Science with a specialization in Artificial Intelligence.' }],
   experiences: [
     { company: 'Rawi Digital Transformation & Services', role: 'AI & Machine Learning Engineer', arrangement: 'Full-Time, Remote', date: 'Jun 2026 - Nov 2026', bullets: ['Built AI automation solutions and LLM-based workflows using n8n, FastAPI, REST APIs, RAG, and vector databases to support digital transformation and internal business processes.', 'Developed backend AI services, reporting automations, API integrations, and data pipelines connecting business systems with machine learning and LLM capabilities.'], tags: ['AI Automation', 'n8n', 'FastAPI', 'RAG', 'Vector Databases'] },

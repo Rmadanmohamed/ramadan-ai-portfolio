@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Code2, Download, ExternalLink, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../data/portfolioData';
+import { buildContactMailto } from '../utils/contactMailto';
 import { SectionHeader } from './SectionHeader';
 
 export function Contact() {
@@ -13,18 +14,17 @@ export function Contact() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const name = String(data.get('name') ?? '');
+    const senderEmail = String(data.get('email') ?? '');
     const message = String(data.get('message') ?? '');
-    const subject = encodeURIComponent(`Portfolio contact from ${name || 'recruiter'}`);
-    const body = encodeURIComponent(message);
-    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
-    setStatus('Email draft opened.');
+    window.location.href = buildContactMailto(profile.email, name, senderEmail, message);
+    setStatus('Your email app should open with a draft. This portfolio does not send or store messages.');
   };
 
   return (
     <section id="contact" className="section-shell">
       <SectionHeader
         eyebrow="Contact"
-        title="Let\u2019s discuss AI engineering and automation opportunities."
+        title="Let's discuss AI engineering and automation opportunities."
         description="Fast links, CV download, and a clean contact form UI for direct outreach."
       />
 
@@ -37,7 +37,7 @@ export function Contact() {
           transition={{ duration: 0.5 }}
         >
           <div className="contact-avatar">
-            <img src={photoSrc} alt="" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} />
+            <img src={photoSrc} alt={`Portrait of ${profile.name}`} width="1200" height="1600" loading="lazy" decoding="async" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} />
           </div>
           <h3>{profile.name}</h3>
           <p>{profile.title}</p>
@@ -86,15 +86,15 @@ export function Contact() {
         >
           <label>
             Name
-            <input name="name" placeholder="Your name" autoComplete="name" />
+            <input name="name" placeholder="Your name" autoComplete="name" required />
           </label>
           <label>
             Email
-            <input name="email" type="email" placeholder="you@company.com" autoComplete="email" />
+            <input name="email" type="email" placeholder="you@company.com" autoComplete="email" required />
           </label>
           <label>
             Message
-            <textarea name="message" placeholder="Tell me about the AI role, project, or collaboration." rows={5} />
+            <textarea name="message" placeholder="Tell me about the AI role, project, or collaboration." rows={5} required />
           </label>
           <button type="submit">
             <Send size={18} />

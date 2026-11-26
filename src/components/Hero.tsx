@@ -60,8 +60,8 @@ export function Hero() {
         <motion.div className="hero-visual" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}>
           <ModelDiagram />
           <div className="profile-card">
-            <div className="profile-frame"><img src={photoSrc} alt="Ramadan Mohamed Hassan" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} /></div>
-            <div><span>Currently focused on</span><strong>Applied AI systems</strong><p>LLMs, RAG, automation, machine learning, and computer vision.</p></div>
+            <div className="profile-frame"><img src={photoSrc} alt="Portrait of Ramadan Mohamed Hassan" width="1200" height="1600" fetchPriority="high" decoding="async" onError={() => setPhotoSrc(profile.fallbackPhotoUrl)} /></div>
+            <div className="profile-card-copy"><span>AREAS OF EXPERTISE</span><strong>AI Systems &amp; AI Automation</strong><p>AI Solutions · LLMs · RAG · Automation · Machine Learning · Computer Vision</p></div>
             <ArrowUpRight className="profile-arrow" size={17} aria-hidden="true" />
           </div>
         </motion.div>

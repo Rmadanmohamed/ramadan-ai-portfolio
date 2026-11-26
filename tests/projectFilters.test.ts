@@ -15,7 +15,7 @@ test('the catalog contains 21 unique records and All returns each exactly once',
 
 test('featured and technical filters match project memberships without duplicate records', () => {
   assert.deepEqual(show('featured').map(({ id }) => id).sort(), projects.filter(({ featured }) => featured).map(({ id }) => id).sort());
-  for (const category of ['medical-ai', 'computer-vision', 'machine-learning', 'deep-learning', 'data-science', 'smart-agriculture', 'robotics-iot', 'optimization', 'full-stack', 'research'] as const) {
+  for (const category of ['medical-ai', 'computer-vision', 'machine-learning', 'deep-learning', 'data-science', 'smart-agriculture', 'robotics-iot', 'optimization', 'full-stack', 'frontend', 'research'] as const) {
     const visible = show(category);
     assert.ok(visible.every((project) => project.categories.includes(category)), `${category} only contains members`);
     assert.equal(new Set(visible.map(({ id }) => id)).size, visible.length, `${category} has unique projects`);
@@ -33,6 +33,24 @@ test('Breast Cancer is tabular Medical AI, Machine Learning, and Data Science on
   assert.deepEqual(project?.categories, ['medical-ai', 'machine-learning', 'data-science']);
   assert.equal(show('computer-vision').some(({ id }) => id === project?.id), false);
   assert.equal(show('deep-learning').some(({ id }) => id === project?.id), false);
+});
+
+test('Molecular Property Prediction is ML, Deep Learning, and Data Science, without Research', () => {
+  const project = projects.find(({ id }) => id === 'molecular-property-prediction-gnn');
+  assert.deepEqual(project?.categories, ['machine-learning', 'deep-learning', 'data-science']);
+  assert.equal(show('research').some(({ id }) => id === project?.id), false);
+  for (const category of ['machine-learning', 'deep-learning', 'data-science'] as const) {
+    assert.equal(show(category).filter(({ id }) => id === project?.id).length, 1);
+  }
+});
+
+test('Research includes documented research work while excluding routine scientific ML projects', () => {
+  const researchIds = show('research').map(({ id }) => id);
+  assert.ok(researchIds.includes('agrinova'), 'AgriNova is linked to its peer-reviewed publication');
+  assert.ok(researchIds.includes('robotics-research-paper'));
+  assert.ok(researchIds.includes('quantum-machine-learning-experiments'));
+  assert.ok(!researchIds.includes('exoplanet-detection-ml'));
+  assert.ok(!researchIds.includes('hybrid-optimization-algorithms'));
 });
 
 test('search combines with category membership regardless of case or surrounding spaces', () => {
